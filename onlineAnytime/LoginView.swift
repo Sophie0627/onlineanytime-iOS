@@ -11,6 +11,8 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    @Binding var isLoggedin: Bool
+    
     var body: some View {
         Color(red: 250, green: 250, blue: 250, opacity: 1.0)
             .overlay(
@@ -55,12 +57,15 @@ struct LoginView: View {
     }
     
     func submit() {
-        
+        self.isLoggedin = true
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
+    
+    @State static var isLoggedin: Bool = false
+    
     static var previews: some View {
-        LoginView()
+        LoginView(isLoggedin: $isLoggedin)
     }
 }

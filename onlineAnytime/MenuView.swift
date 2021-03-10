@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct MenuView: View {
+    
+    @Binding var showMenu: Bool
+    @Binding var isLoggedin: Bool
+    @Binding var isSettings: Bool
+    
     var body: some View {
         Color.green.overlay(
             VStack(alignment: .leading) {
@@ -26,16 +31,27 @@ struct MenuView: View {
                     Image("doc_icon").frame(width: 40, height: 40)
                     Text("My courses").foregroundColor(.white)
                 }.padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
+                .onTapGesture {
+                    self.showMenu = false
+                }
                 
                 HStack {
                     Image("setting_icon").frame(width: 40, height: 40)
                     Text("Settings").foregroundColor(.white)
                 }.padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
+                .onTapGesture {
+                    self.showMenu = false
+                    self.isSettings = true
+                }
                 
                 HStack {
                     Image("logout").frame(width: 40, height: 40)
                     Text("Log out").foregroundColor(.white)
                 }.padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
+                .onTapGesture {
+                    self.showMenu = false
+                    self.isLoggedin = false
+                }
                 
                 Spacer()
                 
@@ -55,7 +71,11 @@ struct MenuView: View {
 }
 
 struct MenuView_Previews: PreviewProvider {
+    @State static var showMenu: Bool = true
+    @State static var isLoggedin: Bool = true
+    @State static var isSettings: Bool = false
+    
     static var previews: some View {
-        MenuView()
+        MenuView(showMenu: $showMenu, isLoggedin: $isLoggedin, isSettings: $isSettings)
     }
 }
