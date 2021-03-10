@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @Binding var showMenu: Bool
+    
     var body: some View {
         VStack(spacing: 0.0) {
-            TopNavView()
+//            TopNavView()
+            Color.green.overlay(
+                HStack(content: {
+                    Button(action: {
+                        self.showMenu = true
+                    }) {
+                        Image("menu").padding()
+                    }
+                    Text("Online-Anytime").foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Close app").foregroundColor(.white).padding()
+                })
+            ).frame(height: 45, alignment: .top)
             SearchBar()
             VStack{
                 HomeListView()
@@ -19,17 +33,19 @@ struct HomeView: View {
     }
 }
 
-struct TopNavView: View {
-    var body: some View {
-        Color.green.overlay(
-            HStack(content: {
-                Image("menu").padding()
-                Text("Online-Anytime").foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
-                Text("Close app").foregroundColor(.white).padding()
-            })
-        ).frame(height: 45, alignment: .top)
-    }
-}
+//struct TopNavView: View {
+//
+//
+//    var body: some View {
+//        Color.green.overlay(
+//            HStack(content: {
+//                Image("menu").padding()
+//                Text("Online-Anytime").foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
+//                Text("Close app").foregroundColor(.white).padding()
+//            })
+//        ).frame(height: 45, alignment: .top)
+//    }
+//}
 
 struct SearchBar: View {
     @State private var keyword: String = ""
@@ -47,7 +63,10 @@ struct SearchBar: View {
 }
 
 struct HomeView_Previews: PreviewProvider {
+    
+    @State static var showMenu: Bool = false
+    
     static var previews: some View {
-        HomeView()
+        HomeView(showMenu: $showMenu)
     }
 }
