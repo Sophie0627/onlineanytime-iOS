@@ -43,6 +43,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E448821125F96C6600E795D0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E4EC86EB25F752A200997C0B /* ContentView.swift */,
+				E409410F25F828D5002425E4 /* LoginView.swift */,
+				E409411225F82964002425E4 /* HomeView.swift */,
+				E43D815325F89F43004DB1BB /* HomeListView.swift */,
+				E43D815625F8B3D6004DB1BB /* MenuView.swift */,
+				E4BBD8FC25F9226C00A56118 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E4EC86DD25F752A200997C0B = {
 			isa = PBXGroup;
 			children = (
@@ -63,15 +76,10 @@
 			isa = PBXGroup;
 			children = (
 				E4EC86E925F752A200997C0B /* onlineAnytimeApp.swift */,
-				E4EC86EB25F752A200997C0B /* ContentView.swift */,
+				E448821125F96C6600E795D0 /* Views */,
 				E4EC86ED25F752C100997C0B /* Assets.xcassets */,
 				E4EC86F225F752C100997C0B /* Info.plist */,
 				E4EC86EF25F752C100997C0B /* Preview Content */,
-				E409410F25F828D5002425E4 /* LoginView.swift */,
-				E409411225F82964002425E4 /* HomeView.swift */,
-				E43D815325F89F43004DB1BB /* HomeListView.swift */,
-				E43D815625F8B3D6004DB1BB /* MenuView.swift */,
-				E4BBD8FC25F9226C00A56118 /* SettingsView.swift */,
 			);
 			path = onlineAnytime;
 			sourceTree = "<group>";
