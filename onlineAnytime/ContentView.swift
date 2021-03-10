@@ -24,7 +24,7 @@ struct ContentView: View {
             }
         if isLoggedin {
             if isSettings {
-                SettingsView()
+                SettingsView(isSettings: self.$isSettings)
             } else {
                 GeometryReader { geometry in
                     ZStack(alignment: .leading) {
