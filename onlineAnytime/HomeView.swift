@@ -12,7 +12,9 @@ struct HomeView: View {
         VStack(spacing: 0.0) {
             TopNavView()
             SearchBar()
-            VStack{}.frame(maxHeight: .infinity)
+            VStack{
+                HomeListView()
+            }.frame(maxHeight: .infinity)
         }
     }
 }
