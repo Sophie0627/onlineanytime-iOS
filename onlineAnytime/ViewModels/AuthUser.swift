@@ -10,7 +10,7 @@ import Foundation
 class AuthUser : ObservableObject {
     
     @Published var signedIn: Bool
-    private var token: String? = nil
+    private var token: String = ""
     
     init(signedIn:Bool) {
         self.signedIn = signedIn
@@ -45,17 +45,17 @@ class AuthUser : ObservableObject {
         }
     }
     
-    func getToken() -> String? {
+    func getToken() -> String {
         if(self.signedIn){
             return self.token
         }
         else{
-            return nil
+            return ""
         }
     }
     
     func signOut(){
         self.signedIn = false
-        self.token = nil
+        self.token = ""
     }
 }

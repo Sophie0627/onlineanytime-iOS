@@ -11,7 +11,7 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
-    @ObservedObject var authUserViewModel = AuthUserViewModel()
+//    @ObservedObject var authUserViewModel = AuthUserViewModel()
     @EnvironmentObject var authUser: AuthUser
     
     var body: some View {
