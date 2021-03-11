@@ -60,6 +60,9 @@ struct ListElementRow: View {
             Image("eye_icon").padding(.trailing, 0.0)
         }).onTapGesture {
             self.screenInfo.screenInfo = "formDetail"
+            self.screenInfo.formId = listElement.form_id
+            self.screenInfo.formName = listElement.form_name
+            self.screenInfo.formDescription = listElement.form_description
         }
     }
 }
