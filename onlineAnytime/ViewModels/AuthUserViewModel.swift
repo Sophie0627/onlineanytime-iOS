@@ -12,11 +12,10 @@ import Combine
 class AuthUserViewModel: ObservableObject {
     
     private let url = "https://online-anytime.com.au/olat/newapi/login"
-    
-//    private var userInfo = [UserInfo]()
+    var token: String = "loggedOut"
     
     func getToken(email: String, password: String) {
-        let params:[String:String] = ["email": "sophie@sophie.com", "password": "sophie"]
+        let params:[String:String] = ["email": email, "password": password]
         
         let url = URL(string: self.url)!
         
@@ -24,7 +23,7 @@ class AuthUserViewModel: ObservableObject {
         
     }
     
-    func finishPost (message:String, data:Data?) -> Void
+    func finishPost (message:String, data:Data?)
     {
         do
         {
@@ -32,6 +31,7 @@ class AuthUserViewModel: ObservableObject {
             {
                 let parsedData = try JSONDecoder().decode(UserInfo.self, from: jsonData)
                 print(parsedData)
+                self.token = parsedData.token
             }
         }
         catch

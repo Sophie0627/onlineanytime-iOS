@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct onlineAnytimeApp: App {
+    
+    @StateObject var authUser = AuthUser(signedIn: false)
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(authUser)
         }
     }
 }

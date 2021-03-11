@@ -10,8 +10,10 @@ import SwiftUI
 struct ContentView: View {
     
     @State var showMenu: Bool = false
-    @State var isLoggedin: Bool = false
+//    @State var isLoggedin: Bool = false
+//    @State var token: String = "loggedOut"
     @State var isSettings: Bool = false
+    @EnvironmentObject var authUser: AuthUser
     
     var body: some View {
         let drag = DragGesture()
@@ -22,7 +24,7 @@ struct ContentView: View {
                     }
                 }
             }
-        if isLoggedin {
+        if authUser.signedIn {
             if isSettings {
                 SettingsView(isSettings: self.$isSettings)
             } else {
@@ -33,14 +35,14 @@ struct ContentView: View {
                             .offset(x: self.showMenu ? geometry.size.width * 2 / 3 : 0)
                             .disabled(self.showMenu ? true : false)
                         if self.showMenu {
-                            MenuView(showMenu: self.$showMenu, isLoggedin: self.$isLoggedin, isSettings: self.$isSettings).frame(width: geometry.size.width * 2 / 3)
+                            MenuView(showMenu: self.$showMenu, isSettings: self.$isSettings).frame(width: geometry.size.width * 2 / 3)
                                 .transition(.move(edge: .leading))
                         }
                     }.gesture(drag)
                 }
             }
         } else {
-            LoginView(isLoggedin: self.$isLoggedin)
+            LoginView()
         }
         
     }

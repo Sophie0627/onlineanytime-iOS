@@ -12,8 +12,7 @@ struct LoginView: View {
     @State private var password: String = ""
     
     @ObservedObject var authUserViewModel = AuthUserViewModel()
-    
-    @Binding var isLoggedin: Bool
+    @EnvironmentObject var authUser: AuthUser
     
     var body: some View {
         Color(red: 250, green: 250, blue: 250, opacity: 1.0)
@@ -59,16 +58,16 @@ struct LoginView: View {
     }
     
     func submit() {
-        self.authUserViewModel.getToken(email: self.email, password: self.password)
+//        print(self.authUser.signedIn)
+        self.authUser.signIn(email: self.email, password: self.password)
+//        print("[token]", self.authUserViewModel.token)
 //        self.isLoggedin = true
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     
-    @State static var isLoggedin: Bool = false
-    
     static var previews: some View {
-        LoginView(isLoggedin: $isLoggedin)
+        LoginView()
     }
 }

@@ -10,8 +10,8 @@ import SwiftUI
 struct MenuView: View {
     
     @Binding var showMenu: Bool
-    @Binding var isLoggedin: Bool
     @Binding var isSettings: Bool
+    @EnvironmentObject var authUser: AuthUser
     
     var body: some View {
         Color.green.overlay(
@@ -50,7 +50,7 @@ struct MenuView: View {
                 }.padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
                 .onTapGesture {
                     self.showMenu = false
-                    self.isLoggedin = false
+                    self.authUser.signOut()
                 }
                 
                 Spacer()
@@ -72,10 +72,9 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     @State static var showMenu: Bool = true
-    @State static var isLoggedin: Bool = true
     @State static var isSettings: Bool = false
     
     static var previews: some View {
-        MenuView(showMenu: $showMenu, isLoggedin: $isLoggedin, isSettings: $isSettings)
+        MenuView(showMenu: $showMenu, isSettings: $isSettings)
     }
 }

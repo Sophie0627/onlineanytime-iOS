@@ -29,7 +29,6 @@ class ApiService
 
         var result:(message:String, data:Data?) = (message: "Fail", data: nil)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            print("-----------ok---------")
             if(error != nil)
             {
                 result.message = "Fail Error not null : \(error.debugDescription)"
