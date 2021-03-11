@@ -48,12 +48,9 @@ struct HomeListView: View {
     }
 }
 
-struct ListElement: Identifiable {
-    let id = UUID()
-    let name: String
-}
-
 struct ListElementRow: View {
+    
+    @EnvironmentObject var screenInfo: ScreenInfo
     var listElement: FormList
 
     var body: some View {
@@ -61,7 +58,9 @@ struct ListElementRow: View {
             Image("doc_icon").renderingMode(/*@START_MENU_TOKEN@*/.template/*@END_MENU_TOKEN@*/).foregroundColor(.black).padding(.leading, 0.0)
             Text("\(listElement.form_name)").frame(maxWidth: .infinity, alignment: .leading)
             Image("eye_icon").padding(.trailing, 0.0)
-        })
+        }).onTapGesture {
+            self.screenInfo.screenInfo = "formDetail"
+        }
     }
 }
 

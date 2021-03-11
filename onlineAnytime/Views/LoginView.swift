@@ -26,6 +26,7 @@ struct LoginView: View {
                     Spacer().frame(height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
                     
                     TextField("Email address", text: $email)
+                        .autocapitalization(.none)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                         .background(Color("white"))

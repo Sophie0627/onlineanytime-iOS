@@ -12,15 +12,14 @@ struct SettingsView: View {
     @State var fullName: String = ""
     @State var email: String = ""
     @State var lastDate: String = ""
-    
-    @Binding var isSettings: Bool
+    @EnvironmentObject var screenInfo: ScreenInfo
     
     var body: some View {
         VStack(spacing: 0.0) {
             Color.green.overlay(
                 HStack(content: {
                     Button(action: {
-                        self.isSettings = false
+                        self.screenInfo.screenInfo = "home"
                     }) {
                         Image("back_icon").padding()
                     }
@@ -78,9 +77,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     
-    @State static var isSettings: Bool = true
-    
     static var previews: some View {
-        SettingsView(isSettings: $isSettings)
+        SettingsView()
     }
 }
