@@ -11,6 +11,8 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    @ObservedObject var authUserViewModel = AuthUserViewModel()
+    
     @Binding var isLoggedin: Bool
     
     var body: some View {
@@ -57,7 +59,8 @@ struct LoginView: View {
     }
     
     func submit() {
-        self.isLoggedin = true
+        self.authUserViewModel.getToken(email: self.email, password: self.password)
+//        self.isLoggedin = true
     }
 }
 

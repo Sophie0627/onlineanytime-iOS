@@ -11,7 +11,10 @@
 		E409411325F82964002425E4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E409411225F82964002425E4 /* HomeView.swift */; };
 		E43D815425F89F43004DB1BB /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D815325F89F43004DB1BB /* HomeListView.swift */; };
 		E43D815725F8B3D6004DB1BB /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D815625F8B3D6004DB1BB /* MenuView.swift */; };
+		E448821725F9708300E795D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E448821625F9708300E795D0 /* User.swift */; };
+		E448821A25F97B2100E795D0 /* AuthUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E448821925F97B2100E795D0 /* AuthUserViewModel.swift */; };
 		E4BBD8FD25F9226D00A56118 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD8FC25F9226C00A56118 /* SettingsView.swift */; };
+		E4DAF38525F9F7A3006B98DB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DAF38425F9F7A2006B98DB /* ApiService.swift */; };
 		E4EC86EA25F752A200997C0B /* onlineAnytimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC86E925F752A200997C0B /* onlineAnytimeApp.swift */; };
 		E4EC86EC25F752A200997C0B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC86EB25F752A200997C0B /* ContentView.swift */; };
 		E4EC86EE25F752C100997C0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4EC86ED25F752C100997C0B /* Assets.xcassets */; };
@@ -23,7 +26,10 @@
 		E409411225F82964002425E4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E43D815325F89F43004DB1BB /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 		E43D815625F8B3D6004DB1BB /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		E448821625F9708300E795D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E448821925F97B2100E795D0 /* AuthUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserViewModel.swift; sourceTree = "<group>"; };
 		E4BBD8FC25F9226C00A56118 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E4DAF38425F9F7A2006B98DB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		E4EC86E625F752A200997C0B /* onlineAnytime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = onlineAnytime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4EC86E925F752A200997C0B /* onlineAnytimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onlineAnytimeApp.swift; sourceTree = "<group>"; };
 		E4EC86EB25F752A200997C0B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +62,30 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		E448821325F96F1500E795D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E448821625F9708300E795D0 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E448821425F96F3100E795D0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E4DAF38425F9F7A2006B98DB /* ApiService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E448821525F96F4100E795D0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E448821925F97B2100E795D0 /* AuthUserViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		E4EC86DD25F752A200997C0B = {
 			isa = PBXGroup;
 			children = (
@@ -76,9 +106,12 @@
 			isa = PBXGroup;
 			children = (
 				E4EC86E925F752A200997C0B /* onlineAnytimeApp.swift */,
+				E448821325F96F1500E795D0 /* Models */,
 				E448821125F96C6600E795D0 /* Views */,
 				E4EC86ED25F752C100997C0B /* Assets.xcassets */,
 				E4EC86F225F752C100997C0B /* Info.plist */,
+				E448821525F96F4100E795D0 /* ViewModels */,
+				E448821425F96F3100E795D0 /* Services */,
 				E4EC86EF25F752C100997C0B /* Preview Content */,
 			);
 			path = onlineAnytime;
@@ -163,8 +196,11 @@
 			files = (
 				E4BBD8FD25F9226D00A56118 /* SettingsView.swift in Sources */,
 				E409411025F828D5002425E4 /* LoginView.swift in Sources */,
+				E448821A25F97B2100E795D0 /* AuthUserViewModel.swift in Sources */,
 				E43D815725F8B3D6004DB1BB /* MenuView.swift in Sources */,
 				E409411325F82964002425E4 /* HomeView.swift in Sources */,
+				E448821725F9708300E795D0 /* User.swift in Sources */,
+				E4DAF38525F9F7A3006B98DB /* ApiService.swift in Sources */,
 				E43D815425F89F43004DB1BB /* HomeListView.swift in Sources */,
 				E4EC86EC25F752A200997C0B /* ContentView.swift in Sources */,
 				E4EC86EA25F752A200997C0B /* onlineAnytimeApp.swift in Sources */,
