@@ -13,6 +13,7 @@ struct onlineAnytimeApp: App {
     @StateObject var authUser = AuthUser(signedIn: false)
     @StateObject var screenInfo = ScreenInfo(screenInfo: "home")
     @StateObject var formElementList = FormElementListViewModel(formElementList: [])
+    @StateObject var formElementOptions = FormElementOptionViewModel(formElementOptions: [])
     
     var body: some Scene {
         WindowGroup {
@@ -20,6 +21,7 @@ struct onlineAnytimeApp: App {
                 .environmentObject(authUser)
                 .environmentObject(screenInfo)
                 .environmentObject(formElementList)
+                .environmentObject(formElementOptions)
         }
     }
 }

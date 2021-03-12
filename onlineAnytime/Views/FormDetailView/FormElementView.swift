@@ -13,7 +13,13 @@ struct FormElementView: View {
     
     var body: some View {
         if self.pageNumber == self.formElement.element_page_number {
-            Text("\(pageNumber)Result: " + self.formElement.element_type)
+            switch self.formElement.element_type {
+            case "text":
+                FormTextView(textTitle: self.formElement.element_title)
+//                Text("\(pageNumber)Result: " + self.formElement.element_type)
+            default:
+                VStack {}
+            }
         } else {
             VStack {}
         }
