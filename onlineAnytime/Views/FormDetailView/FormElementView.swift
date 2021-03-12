@@ -16,6 +16,8 @@ struct FormElementView: View {
             switch self.formElement.element_type {
             case "text":
                 FormTextView(textTitle: self.formElement.element_title)
+            case "radio":
+                FormRadioView(radioTitle: self.formElement.element_title, radioId: self.formElement.element_id)
 //                Text("\(pageNumber)Result: " + self.formElement.element_type)
             default:
                 VStack {}

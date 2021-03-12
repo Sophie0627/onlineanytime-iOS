@@ -14,7 +14,7 @@ struct FormTextView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(self.textTitle).fixedSize()
+            Text(self.textTitle).fixedSize(horizontal: false, vertical: true)
             TextField("Please write", text: $text)
                 .autocapitalization(.none)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -28,7 +28,7 @@ struct FormTextView: View {
 
 struct FormTextView_Previews: PreviewProvider {
     
-    static var textTitle: String = "Text Number"
+    static var textTitle: String = ""
     
     static var previews: some View {
         FormTextView(textTitle: self.textTitle)

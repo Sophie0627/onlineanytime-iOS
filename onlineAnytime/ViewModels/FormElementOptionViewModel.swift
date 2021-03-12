@@ -13,4 +13,16 @@ class FormElementOptionViewModel: ObservableObject {
     init(formElementOptions: [FormElementOption]) {
         self.formElementOptions = formElementOptions
     }
+    
+    func getOptions(formId: Int, elementId: Int) -> [String] {
+        var options: [String] = []
+        
+        for option in self.formElementOptions {
+            if option.form_id == formId && option.element_id ==  elementId {
+                options.append(option.option)
+            }
+        }
+        
+        return options
+    }
 }

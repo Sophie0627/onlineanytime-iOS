@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69D9A54591C1F8403A8488CA /* Pods_onlineAnytime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C742881C09D9F4B7A6230B /* Pods_onlineAnytime.framework */; };
 		E409411025F828D5002425E4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E409410F25F828D5002425E4 /* LoginView.swift */; };
 		E409411325F82964002425E4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E409411225F82964002425E4 /* HomeView.swift */; };
 		E415660525FA975A0008B8F1 /* FormDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E415660425FA975A0008B8F1 /* FormDetailView.swift */; };
@@ -34,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		93C742881C09D9F4B7A6230B /* Pods_onlineAnytime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_onlineAnytime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9406DBEBBADC8992F38C84CC /* Pods-onlineAnytime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-onlineAnytime.debug.xcconfig"; path = "Target Support Files/Pods-onlineAnytime/Pods-onlineAnytime.debug.xcconfig"; sourceTree = "<group>"; };
+		B1351CA9231D73E7E9CA5608 /* Pods-onlineAnytime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-onlineAnytime.release.xcconfig"; path = "Target Support Files/Pods-onlineAnytime/Pods-onlineAnytime.release.xcconfig"; sourceTree = "<group>"; };
 		E409410F25F828D5002425E4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E409411225F82964002425E4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E415660425FA975A0008B8F1 /* FormDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDetailView.swift; sourceTree = "<group>"; };
@@ -67,12 +71,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D9A54591C1F8403A8488CA /* Pods_onlineAnytime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		454C8A78D614907A5D9693AB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9406DBEBBADC8992F38C84CC /* Pods-onlineAnytime.debug.xcconfig */,
+				B1351CA9231D73E7E9CA5608 /* Pods-onlineAnytime.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8733C97B94718927BB78BF08 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93C742881C09D9F4B7A6230B /* Pods_onlineAnytime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E428F02F25FBA42F007E48C9 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +174,8 @@
 			children = (
 				E4EC86E825F752A200997C0B /* onlineAnytime */,
 				E4EC86E725F752A200997C0B /* Products */,
+				454C8A78D614907A5D9693AB /* Pods */,
+				8733C97B94718927BB78BF08 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4EC86F525F752C100997C0B /* Build configuration list for PBXNativeTarget "onlineAnytime" */;
 			buildPhases = (
+				BC3F4DA50B3D81443C9A226F /* [CP] Check Pods Manifest.lock */,
 				E4EC86E225F752A200997C0B /* Sources */,
 				E4EC86E325F752A200997C0B /* Frameworks */,
 				E4EC86E425F752A200997C0B /* Resources */,
+				6B8BE94C5C8AAAC80D18772D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,6 +275,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6B8BE94C5C8AAAC80D18772D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-onlineAnytime/Pods-onlineAnytime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-onlineAnytime/Pods-onlineAnytime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-onlineAnytime/Pods-onlineAnytime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC3F4DA50B3D81443C9A226F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-onlineAnytime-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E4EC86E225F752A200997C0B /* Sources */ = {
@@ -400,6 +469,7 @@
 		};
 		E4EC86F625F752C100997C0B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9406DBEBBADC8992F38C84CC /* Pods-onlineAnytime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -421,6 +491,7 @@
 		};
 		E4EC86F725F752C100997C0B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1351CA9231D73E7E9CA5608 /* Pods-onlineAnytime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

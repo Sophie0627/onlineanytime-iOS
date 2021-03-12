@@ -21,6 +21,7 @@ struct FormDetailView: View {
                 HStack(content: {
                     Button(action: {
                         self.screenInfo.screenInfo = "home"
+                        self.formElementList.formElementList = []
                     }) {
                         Image("back_icon").padding()
                     }
