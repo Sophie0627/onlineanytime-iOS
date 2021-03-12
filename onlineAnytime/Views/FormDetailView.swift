@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct FormDetailView: View {
     
     @EnvironmentObject var authUser: AuthUser
     @EnvironmentObject var screenInfo: ScreenInfo
-    @State var formInfo: String = ""
+    @State private var formElementList = [FormElement]()
     
     var body: some View {
         VStack(spacing: 0.0) {
@@ -26,11 +27,15 @@ struct FormDetailView: View {
                     Text("Submit").foregroundColor(.white).padding()
                 })
             ).frame(height: 60)
-            List {
-                Text(self.screenInfo.formName).frame(maxWidth: .infinity).padding(.vertical, 10.0)
-                Text(self.screenInfo.formDescription)
-                Text(self.formInfo)
-            }
+            ScrollView {
+                VStack {
+                    Text(self.screenInfo.formName).frame(maxWidth: .infinity).padding(.vertical, 10.0)
+//                    HTMLStringView(htmlContent: self.screenInfo.formDescription)
+//                    Text(self.formInfo)
+                }
+            }.padding()
+            .frame(maxHeight: .infinity)
+            
         }.onAppear(perform: self.fetchFormInfo)
     }
     
@@ -43,37 +48,21 @@ struct FormDetailView: View {
         request.httpMethod = "GET"
         request.setValue(authUser.getToken(), forHTTPHeaderField: "token")
         URLSession.shared.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                print("Error: error calling GET")
-                print(error!)
-                return
-            }
-            guard let data = data else {
-                print("Error: Did not receive data")
-                return
-            }
-            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                print("Error: HTTP request failed")
-                return
-            }
-            do {
-                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-                    print("Error: Cannot convert data to JSON object")
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(FormDetailResponse.self, from: data) {
+                    // we have good data – go back to the main thread
+                    DispatchQueue.main.async {
+                        // update our UI
+                        self.formElementList = decodedResponse.forms
+                    }
+
+                    // everything is good, so we can exit
                     return
                 }
-                guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
-                    print("Error: Cannot convert JSON object to Pretty JSON data")
-                    return
-                }
-                guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
-                    print("Error: Could print JSON in String")
-                    return
-                }
-                self.formInfo = prettyPrintedJson
-            } catch {
-                print("Error: Trying to convert JSON data to string")
-                return
             }
+
+            // if we're still here it means there was a problem
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
         }.resume()
     }
 }
@@ -81,5 +70,17 @@ struct FormDetailView: View {
 struct FormDetailView_Previews: PreviewProvider {
     static var previews: some View {
         FormDetailView()
+    }
+}
+
+struct HTMLStringView: UIViewRepresentable {
+    let htmlContent: String
+
+    func makeUIView(context: Context) -> WKWebView {
+        return WKWebView()
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.loadHTMLString("<font size=10>" + htmlContent + "</font>", baseURL: nil)
     }
 }
