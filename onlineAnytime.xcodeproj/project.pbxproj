@@ -12,6 +12,9 @@
 		E415660525FA975A0008B8F1 /* FormDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E415660425FA975A0008B8F1 /* FormDetailView.swift */; };
 		E415660825FAA06F0008B8F1 /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E415660725FAA06F0008B8F1 /* ScreenInfo.swift */; };
 		E415660B25FACDB30008B8F1 /* FormDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E415660A25FACDB20008B8F1 /* FormDetail.swift */; };
+		E428F02725FB5E25007E48C9 /* FormElementListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E428F02625FB5E25007E48C9 /* FormElementListView.swift */; };
+		E428F02A25FB60A5007E48C9 /* FormElementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E428F02925FB60A5007E48C9 /* FormElementListViewModel.swift */; };
+		E428F02D25FB9EBA007E48C9 /* FormElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E428F02C25FB9EBA007E48C9 /* FormElementView.swift */; };
 		E43D815425F89F43004DB1BB /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D815325F89F43004DB1BB /* HomeListView.swift */; };
 		E43D815725F8B3D6004DB1BB /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D815625F8B3D6004DB1BB /* MenuView.swift */; };
 		E448821725F9708300E795D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E448821625F9708300E795D0 /* User.swift */; };
@@ -32,6 +35,9 @@
 		E415660425FA975A0008B8F1 /* FormDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDetailView.swift; sourceTree = "<group>"; };
 		E415660725FAA06F0008B8F1 /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
 		E415660A25FACDB20008B8F1 /* FormDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDetail.swift; sourceTree = "<group>"; };
+		E428F02625FB5E25007E48C9 /* FormElementListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElementListView.swift; sourceTree = "<group>"; };
+		E428F02925FB60A5007E48C9 /* FormElementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElementListViewModel.swift; sourceTree = "<group>"; };
+		E428F02C25FB9EBA007E48C9 /* FormElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElementView.swift; sourceTree = "<group>"; };
 		E43D815325F89F43004DB1BB /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 		E43D815625F8B3D6004DB1BB /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		E448821625F9708300E795D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -69,6 +75,8 @@
 				E43D815625F8B3D6004DB1BB /* MenuView.swift */,
 				E4BBD8FC25F9226C00A56118 /* SettingsView.swift */,
 				E415660425FA975A0008B8F1 /* FormDetailView.swift */,
+				E428F02625FB5E25007E48C9 /* FormElementListView.swift */,
+				E428F02C25FB9EBA007E48C9 /* FormElementView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -97,6 +105,7 @@
 			children = (
 				E4DAF38725FA0C46006B98DB /* AuthUser.swift */,
 				E4E65D4625FA62F000A922C5 /* FormList.swift */,
+				E428F02925FB60A5007E48C9 /* FormElementListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -217,7 +226,10 @@
 				E415660B25FACDB30008B8F1 /* FormDetail.swift in Sources */,
 				E4DAF38825FA0C46006B98DB /* AuthUser.swift in Sources */,
 				E448821725F9708300E795D0 /* User.swift in Sources */,
+				E428F02A25FB60A5007E48C9 /* FormElementListViewModel.swift in Sources */,
+				E428F02D25FB9EBA007E48C9 /* FormElementView.swift in Sources */,
 				E415660525FA975A0008B8F1 /* FormDetailView.swift in Sources */,
+				E428F02725FB5E25007E48C9 /* FormElementListView.swift in Sources */,
 				E4DAF38525F9F7A3006B98DB /* ApiService.swift in Sources */,
 				E43D815425F89F43004DB1BB /* HomeListView.swift in Sources */,
 				E4EC86EC25F752A200997C0B /* ContentView.swift in Sources */,

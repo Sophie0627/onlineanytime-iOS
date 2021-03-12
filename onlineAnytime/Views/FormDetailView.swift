@@ -12,7 +12,8 @@ struct FormDetailView: View {
     
     @EnvironmentObject var authUser: AuthUser
     @EnvironmentObject var screenInfo: ScreenInfo
-    @State private var formElementList = [FormElement]()
+    @EnvironmentObject var formElementList: FormElementListViewModel
+    @State var pageNumber: Int = 1
     
     var body: some View {
         VStack(spacing: 0.0) {
@@ -25,13 +26,16 @@ struct FormDetailView: View {
                     }
                     Text(self.screenInfo.formName).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
                     Text("Submit").foregroundColor(.white).padding()
+                        .onTapGesture {
+                            self.pageNumber += 1
+                        }
                 })
             ).frame(height: 60)
             ScrollView {
                 VStack {
-                    Text(self.screenInfo.formName).frame(maxWidth: .infinity).padding(.vertical, 10.0)
+                    Text(self.screenInfo.formName).frame(maxWidth: .infinity).padding(.vertical, 10.0).frame(maxWidth: .infinity, alignment: .leading)
 //                    HTMLStringView(htmlContent: self.screenInfo.formDescription)
-//                    Text(self.formInfo)
+                    FormElementListView(pageNumber: self.$pageNumber).frame(maxWidth: .infinity, alignment: .leading)
                 }
             }.padding()
             .frame(maxHeight: .infinity)
@@ -53,7 +57,7 @@ struct FormDetailView: View {
                     // we have good data – go back to the main thread
                     DispatchQueue.main.async {
                         // update our UI
-                        self.formElementList = decodedResponse.forms
+                        self.formElementList.formElementList = decodedResponse.forms
                     }
 
                     // everything is good, so we can exit
@@ -68,8 +72,11 @@ struct FormDetailView: View {
 }
 
 struct FormDetailView_Previews: PreviewProvider {
+    
+    @State static var pageNumber: Int = 1
+    
     static var previews: some View {
-        FormDetailView()
+        FormDetailView(pageNumber: self.pageNumber)
     }
 }
 

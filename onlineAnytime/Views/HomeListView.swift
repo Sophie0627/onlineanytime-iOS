@@ -36,7 +36,6 @@ struct HomeListView: View {
                         // update our UI
                         self.formList = decodedResponse.forms
                     }
-
                     // everything is good, so we can exit
                     return
                 }
