@@ -18,6 +18,8 @@ struct FormElementView: View {
                 FormTextView(textTitle: self.formElement.element_title)
             case "radio":
                 FormRadioView(radioTitle: self.formElement.element_title, radioId: self.formElement.element_id)
+            case "select":
+                FormSelectView(selectTitle: self.formElement.element_title, selectId: self.formElement.element_id)
 //                Text("\(pageNumber)Result: " + self.formElement.element_type)
             default:
                 VStack {}

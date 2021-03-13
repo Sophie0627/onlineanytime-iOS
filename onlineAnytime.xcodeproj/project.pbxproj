@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		E43D815725F8B3D6004DB1BB /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D815625F8B3D6004DB1BB /* MenuView.swift */; };
 		E44425EE25FBC818003A321A /* FormElementOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44425ED25FBC818003A321A /* FormElementOption.swift */; };
 		E44425F125FBC9D2003A321A /* FormElementOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44425F025FBC9D2003A321A /* FormElementOptionViewModel.swift */; };
+		E44425FF25FBF0BB003A321A /* FormSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44425FE25FBF0BB003A321A /* FormSelectView.swift */; };
 		E448821725F9708300E795D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E448821625F9708300E795D0 /* User.swift */; };
 		E4BBD8FD25F9226D00A56118 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD8FC25F9226C00A56118 /* SettingsView.swift */; };
 		E4DAF38525F9F7A3006B98DB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DAF38425F9F7A2006B98DB /* ApiService.swift */; };
@@ -52,6 +53,7 @@
 		E43D815625F8B3D6004DB1BB /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		E44425ED25FBC818003A321A /* FormElementOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElementOption.swift; sourceTree = "<group>"; };
 		E44425F025FBC9D2003A321A /* FormElementOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElementOptionViewModel.swift; sourceTree = "<group>"; };
+		E44425FE25FBF0BB003A321A /* FormSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSelectView.swift; sourceTree = "<group>"; };
 		E448821625F9708300E795D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E4BBD8FC25F9226C00A56118 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E4DAF38425F9F7A2006B98DB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
@@ -84,7 +86,6 @@
 				9406DBEBBADC8992F38C84CC /* Pods-onlineAnytime.debug.xcconfig */,
 				B1351CA9231D73E7E9CA5608 /* Pods-onlineAnytime.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -121,6 +122,7 @@
 			children = (
 				E428F03525FBA878007E48C9 /* FormTextView.swift */,
 				E428F03925FBB391007E48C9 /* FormRadioView.swift */,
+				E44425FE25FBF0BB003A321A /* FormSelectView.swift */,
 			);
 			path = FormElements;
 			sourceTree = "<group>";
@@ -338,6 +340,7 @@
 				E428F02A25FB60A5007E48C9 /* FormElementListViewModel.swift in Sources */,
 				E428F02D25FB9EBA007E48C9 /* FormElementView.swift in Sources */,
 				E415660525FA975A0008B8F1 /* FormDetailView.swift in Sources */,
+				E44425FF25FBF0BB003A321A /* FormSelectView.swift in Sources */,
 				E428F02725FB5E25007E48C9 /* FormElementListView.swift in Sources */,
 				E4DAF38525F9F7A3006B98DB /* ApiService.swift in Sources */,
 				E43D815425F89F43004DB1BB /* HomeListView.swift in Sources */,
