@@ -20,8 +20,11 @@ struct FormRadioView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(self.radioTitle).fixedSize(horizontal: false, vertical: true)
-            RadioGroupPicker(selectedIndex: $selection, titles: self.formElementOptions.getOptions(formId: self.screenInfo.formId, elementId: self.radioId))
-                .fixedSize()
+            HStack {
+                RadioGroupPicker(selectedIndex: $selection, titles: self.formElementOptions.getOptions(formId: self.screenInfo.formId, elementId: self.radioId))
+                    .fixedSize()
+                Spacer()
+            }
         }
     }
 }

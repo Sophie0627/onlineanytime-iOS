@@ -24,6 +24,7 @@
 		E44425F125FBC9D2003A321A /* FormElementOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44425F025FBC9D2003A321A /* FormElementOptionViewModel.swift */; };
 		E44425FF25FBF0BB003A321A /* FormSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44425FE25FBF0BB003A321A /* FormSelectView.swift */; };
 		E448821725F9708300E795D0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E448821625F9708300E795D0 /* User.swift */; };
+		E49A124325FC92EC00D56339 /* FormCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49A124225FC92EC00D56339 /* FormCheckBoxView.swift */; };
 		E4BBD8FD25F9226D00A56118 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD8FC25F9226C00A56118 /* SettingsView.swift */; };
 		E4DAF38525F9F7A3006B98DB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DAF38425F9F7A2006B98DB /* ApiService.swift */; };
 		E4DAF38825FA0C46006B98DB /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DAF38725FA0C46006B98DB /* AuthUser.swift */; };
@@ -55,6 +56,7 @@
 		E44425F025FBC9D2003A321A /* FormElementOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElementOptionViewModel.swift; sourceTree = "<group>"; };
 		E44425FE25FBF0BB003A321A /* FormSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSelectView.swift; sourceTree = "<group>"; };
 		E448821625F9708300E795D0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E49A124225FC92EC00D56339 /* FormCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCheckBoxView.swift; sourceTree = "<group>"; };
 		E4BBD8FC25F9226C00A56118 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E4DAF38425F9F7A2006B98DB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		E4DAF38725FA0C46006B98DB /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				E428F03525FBA878007E48C9 /* FormTextView.swift */,
 				E428F03925FBB391007E48C9 /* FormRadioView.swift */,
 				E44425FE25FBF0BB003A321A /* FormSelectView.swift */,
+				E49A124225FC92EC00D56339 /* FormCheckBoxView.swift */,
 			);
 			path = FormElements;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				E44425F125FBC9D2003A321A /* FormElementOptionViewModel.swift in Sources */,
 				E409411025F828D5002425E4 /* LoginView.swift in Sources */,
 				E43D815725F8B3D6004DB1BB /* MenuView.swift in Sources */,
+				E49A124325FC92EC00D56339 /* FormCheckBoxView.swift in Sources */,
 				E409411325F82964002425E4 /* HomeView.swift in Sources */,
 				E415660B25FACDB30008B8F1 /* FormDetail.swift in Sources */,
 				E4DAF38825FA0C46006B98DB /* AuthUser.swift in Sources */,
