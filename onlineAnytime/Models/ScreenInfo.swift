@@ -13,11 +13,13 @@ class ScreenInfo : ObservableObject {
     @Published var formId: Int
     @Published var formName: String
     @Published var formDescription: String
+    @Published var pageNumber: Int
     
     init(screenInfo: String) {
         self.screenInfo = screenInfo
         self.formId = -1
         self.formName = ""
         self.formDescription = ""
+        self.pageNumber = 1
     }
 }

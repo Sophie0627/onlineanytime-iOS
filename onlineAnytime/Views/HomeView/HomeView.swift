@@ -23,6 +23,9 @@ struct HomeView: View {
                     }
                     Text("Online-Anytime").foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
                     Text("Close app").foregroundColor(.white).padding()
+                        .onTapGesture {
+                            exit(-1)
+                        }
                 })
             ).frame(height: 45, alignment: .top)
             SearchBar()

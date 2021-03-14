@@ -24,7 +24,7 @@ struct FormCheckBoxView: View {
             ForEach(0 ..< options.count) {
                 CheckboxFieldView(text: options[$0])
             }
-        }.padding()
+        }
     }
 }
 

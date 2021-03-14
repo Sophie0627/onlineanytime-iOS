@@ -16,6 +16,19 @@ struct FormElementView: View {
             switch self.formElement.element_type {
             case "text":
                 FormTextView(textTitle: self.formElement.element_title)
+            case "email":
+                FormTextView(textTitle: self.formElement.element_title)
+            case "europe_date":
+                FormTextView(textTitle: self.formElement.element_title)
+            case "page_break":
+                PageBreakView()
+            case "section":
+                FormTextView(textTitle: self.formElement.element_title)
+//                TextCustom(html: self.formElement.element_title)
+            case "file":
+                FormFileView(fileTitle: self.formElement.element_title)
+            case "textarea":
+                FormTextAreaView(textAreaTitle: self.formElement.element_title)
             case "radio":
                 FormRadioView(radioTitle: self.formElement.element_title, radioId: self.formElement.element_id)
             case "select":

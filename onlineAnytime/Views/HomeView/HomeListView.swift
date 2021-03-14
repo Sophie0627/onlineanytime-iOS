@@ -94,6 +94,7 @@ struct ListElementRow: View {
             self.screenInfo.formId = listElement.form_id
             self.screenInfo.formName = listElement.form_name
             self.screenInfo.formDescription = listElement.form_description
+            self.screenInfo.pageNumber = 1
         }
     }
 }

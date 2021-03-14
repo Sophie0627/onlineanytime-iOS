@@ -9,23 +9,22 @@ import SwiftUI
 
 struct FormElementListView: View {
     
-    @Binding var pageNumber: Int
     @EnvironmentObject var formElementList: FormElementListViewModel
+    @EnvironmentObject var screenInfo: ScreenInfo
     
     var body: some View {
         VStack {
+//            TextCustom(html: self.screenInfo.formDescription)
             ForEach(self.formElementList.formElementList, id: \.element_id) { formElement in
-                FormElementView(formElement: formElement, pageNumber: self.pageNumber)
+                FormElementView(formElement: formElement, pageNumber: self.screenInfo.pageNumber)
             }
-        }
+        }.padding()
     }
 }
 
 struct FormElementListView_Previews: PreviewProvider {
     
-    @State static var pageNumber: Int = 1
-    
     static var previews: some View {
-        FormElementListView(pageNumber: self.$pageNumber)
+        FormElementListView()
     }
 }

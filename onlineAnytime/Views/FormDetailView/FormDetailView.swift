@@ -13,7 +13,6 @@ struct FormDetailView: View {
     @EnvironmentObject var authUser: AuthUser
     @EnvironmentObject var screenInfo: ScreenInfo
     @EnvironmentObject var formElementList: FormElementListViewModel
-    @State var pageNumber: Int = 1
     
     var body: some View {
         VStack(spacing: 0.0) {
@@ -28,7 +27,7 @@ struct FormDetailView: View {
                     Text(self.screenInfo.formName).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
                     Text("Submit").foregroundColor(.white).padding()
                         .onTapGesture {
-                            self.pageNumber += 1
+                            self.screenInfo.pageNumber += 1
                         }
                 })
             ).frame(height: 60)
@@ -36,7 +35,9 @@ struct FormDetailView: View {
                 VStack {
                     Text(self.screenInfo.formName).frame(maxWidth: .infinity).padding(.vertical, 10.0).frame(maxWidth: .infinity, alignment: .leading)
 //                    HTMLStringView(htmlContent: self.screenInfo.formDescription)
-                    FormElementListView(pageNumber: self.$pageNumber).frame(maxWidth: .infinity, alignment: .leading)
+//                    TextCustom(html: self.screenInfo.formDescription)
+                    Text(self.screenInfo.formDescription)
+                    FormElementListView().frame(maxWidth: .infinity, alignment: .leading)
                 }
             }.padding()
             .frame(maxHeight: .infinity)
@@ -73,11 +74,10 @@ struct FormDetailView: View {
 }
 
 struct FormDetailView_Previews: PreviewProvider {
-    
-    @State static var pageNumber: Int = 1
+
     
     static var previews: some View {
-        FormDetailView(pageNumber: self.pageNumber)
+        FormDetailView()
     }
 }
 
@@ -89,6 +89,24 @@ struct HTMLStringView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.loadHTMLString("<font size=10>" + htmlContent + "</font>", baseURL: nil)
+        uiView.loadHTMLString("<p>" + htmlContent + "</p>", baseURL: nil)
     }
+}
+
+
+struct TextCustom: UIViewRepresentable {
+  let html: String
+  func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<Self>) {
+    DispatchQueue.main.async {
+      let data = Data(self.html.utf8)
+      if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+        uiView.isEditable = false
+        uiView.attributedText = attributedString
+      }
+    }
+  }
+  func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextView {
+    let label = UITextView()
+    return label
+  }
 }
