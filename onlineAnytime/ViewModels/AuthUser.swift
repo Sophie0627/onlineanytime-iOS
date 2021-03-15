@@ -11,6 +11,7 @@ class AuthUser : ObservableObject {
     
     @Published var signedIn: Bool
     private var token: String = ""
+    var dataProcess = DataProcess()
     
     init(signedIn:Bool) {
         self.signedIn = signedIn
@@ -37,6 +38,7 @@ class AuthUser : ObservableObject {
                 print(parsedData)
                 self.token = parsedData.token
                 self.signedIn = true
+                dataProcess.DataProcess()
             }
         }
         catch

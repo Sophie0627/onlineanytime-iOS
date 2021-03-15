@@ -13,7 +13,10 @@ struct ContentView: View {
     @EnvironmentObject var authUser: AuthUser
     @EnvironmentObject var screenInfo: ScreenInfo
     
+    var status: Bool = Reach().isOnline()
+    
     var body: some View {
+        
         let drag = DragGesture()
             .onEnded {
                 if $0.translation.width < -100 {
@@ -22,7 +25,10 @@ struct ContentView: View {
                     }
                 }
             }
-        if authUser.signedIn {
+        
+        if !authUser.signedIn && self.status {
+            LoginView()
+        } else {
             switch screenInfo.screenInfo {
                 case "home":
                     GeometryReader { geometry in
@@ -58,10 +64,7 @@ struct ContentView: View {
                         }.gesture(drag)
                     }
             }
-        } else {
-            LoginView()
         }
-        
     }
 }
 
