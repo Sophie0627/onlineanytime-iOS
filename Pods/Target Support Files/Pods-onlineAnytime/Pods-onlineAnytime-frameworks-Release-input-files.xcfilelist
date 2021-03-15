@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-onlineAnytime/Pods-onlineAnytime-frameworks.sh
-${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework
 ${BUILT_PRODUCTS_DIR}/RadioGroup/RadioGroup.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SDWebImageSwiftUI/SDWebImageSwiftUI.framework
 ${BUILT_PRODUCTS_DIR}/SweeterSwift/SweeterSwift.framework

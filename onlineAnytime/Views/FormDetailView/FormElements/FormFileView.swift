@@ -13,7 +13,7 @@ struct FormFileView: View {
     
     var body: some View {
         VStack {
-            Text(self.fileTitle).fixedSize(horizontal: false, vertical: true)
+            Text(self.fileTitle.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)).fixedSize(horizontal: false, vertical: true)
             Button(action: {}) {
                 Text("SELECT FILE")
             }.padding()

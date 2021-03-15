@@ -51,6 +51,8 @@ struct FormElementView: View {
                 FormSignView(signTitle: self.formElement.element_title)
             case "checkbox":
                 FormCheckBoxView(checkboxTitle: self.formElement.element_title, checkboxtId: self.formElement.element_id)
+            case "media":
+                FormMediaView(src: self.formElement.element_media_image_src ?? "")
 //                Text("\(pageNumber)Result: " + self.formElement.element_type)
             default:
                 VStack {}

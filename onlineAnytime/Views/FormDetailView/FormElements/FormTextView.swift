@@ -14,7 +14,7 @@ struct FormTextView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(self.textTitle).fixedSize(horizontal: false, vertical: true)
+            Text(self.textTitle.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)).fixedSize(horizontal: false, vertical: true)
             TextField("Please write", text: $text)
                 .autocapitalization(.none)
                 .textFieldStyle(RoundedBorderTextFieldStyle())

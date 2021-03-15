@@ -36,7 +36,7 @@ struct FormDetailView: View {
                     Text(self.screenInfo.formName).frame(maxWidth: .infinity).padding(.vertical, 10.0).frame(maxWidth: .infinity, alignment: .leading)
 //                    HTMLStringView(htmlContent: self.screenInfo.formDescription)
 //                    TextCustom(html: self.screenInfo.formDescription)
-                    Text(self.screenInfo.formDescription)
+                    Text(self.screenInfo.formDescription.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)).fixedSize(horizontal: false, vertical: true)
                     FormElementListView().frame(maxWidth: .infinity, alignment: .leading)
                 }
             }.padding()

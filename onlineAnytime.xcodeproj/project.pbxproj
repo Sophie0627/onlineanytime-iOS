@@ -13,6 +13,7 @@
 		E415660525FA975A0008B8F1 /* FormDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E415660425FA975A0008B8F1 /* FormDetailView.swift */; };
 		E415660825FAA06F0008B8F1 /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E415660725FAA06F0008B8F1 /* ScreenInfo.swift */; };
 		E415660B25FACDB30008B8F1 /* FormDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E415660A25FACDB20008B8F1 /* FormDetail.swift */; };
+		E41ADF9725FFB835003B5549 /* FormMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41ADF9625FFB835003B5549 /* FormMediaView.swift */; };
 		E426511C25FF289200A4D72F /* FormDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E426511B25FF289200A4D72F /* FormDateView.swift */; };
 		E426511F25FF395400A4D72F /* FormTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E426511E25FF395300A4D72F /* FormTimeView.swift */; };
 		E426512225FF5C0700A4D72F /* FormSignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E426512125FF5C0700A4D72F /* FormSignView.swift */; };
@@ -54,6 +55,7 @@
 		E415660425FA975A0008B8F1 /* FormDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDetailView.swift; sourceTree = "<group>"; };
 		E415660725FAA06F0008B8F1 /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
 		E415660A25FACDB20008B8F1 /* FormDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDetail.swift; sourceTree = "<group>"; };
+		E41ADF9625FFB835003B5549 /* FormMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormMediaView.swift; sourceTree = "<group>"; };
 		E426511B25FF289200A4D72F /* FormDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDateView.swift; sourceTree = "<group>"; };
 		E426511E25FF395300A4D72F /* FormTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTimeView.swift; sourceTree = "<group>"; };
 		E426512125FF5C0700A4D72F /* FormSignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSignView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E41ADF9425FFB6B7003B5549 /* FormSignView */ = {
+			isa = PBXGroup;
+			children = (
+				E426512125FF5C0700A4D72F /* FormSignView.swift */,
+				E426512825FF616300A4D72F /* DrawingPad.swift */,
+				E426512B25FF61E100A4D72F /* DrawingControls.swift */,
+			);
+			path = FormSignView;
+			sourceTree = "<group>";
+		};
 		E428F02F25FBA42F007E48C9 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,9 +162,8 @@
 				E4B492C725FE9909001389E1 /* FormTextAreaView.swift */,
 				E426511B25FF289200A4D72F /* FormDateView.swift */,
 				E426511E25FF395300A4D72F /* FormTimeView.swift */,
-				E426512125FF5C0700A4D72F /* FormSignView.swift */,
-				E426512825FF616300A4D72F /* DrawingPad.swift */,
-				E426512B25FF61E100A4D72F /* DrawingControls.swift */,
+				E41ADF9425FFB6B7003B5549 /* FormSignView */,
+				E41ADF9625FFB835003B5549 /* FormMediaView.swift */,
 			);
 			path = FormElements;
 			sourceTree = "<group>";
@@ -374,6 +385,7 @@
 				E415660B25FACDB30008B8F1 /* FormDetail.swift in Sources */,
 				E4DAF38825FA0C46006B98DB /* AuthUser.swift in Sources */,
 				E428F03A25FBB391007E48C9 /* FormRadioView.swift in Sources */,
+				E41ADF9725FFB835003B5549 /* FormMediaView.swift in Sources */,
 				E4B492C525FE91FC001389E1 /* FormFileView.swift in Sources */,
 				E448821725F9708300E795D0 /* User.swift in Sources */,
 				E428F02A25FB60A5007E48C9 /* FormElementListViewModel.swift in Sources */,

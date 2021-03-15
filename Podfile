@@ -7,5 +7,6 @@ target 'onlineAnytime' do
 
   # Pods for onlineAnytime
   pod 'RadioGroup'
+  pod 'SDWebImageSwiftUI'
 
 end
