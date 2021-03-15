@@ -13,7 +13,7 @@ struct FormFileView: View {
     
     var body: some View {
         VStack {
-            Text(self.fileTitle)
+            Text(self.fileTitle).fixedSize(horizontal: false, vertical: true)
             Button(action: {}) {
                 Text("SELECT FILE")
             }.padding()

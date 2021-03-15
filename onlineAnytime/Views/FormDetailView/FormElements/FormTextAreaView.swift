@@ -13,8 +13,8 @@ struct FormTextAreaView: View {
     @State private var profileText: String = "Please write"
     
     var body: some View {
-        VStack {
-            Text(self.textAreaTitle)
+        VStack(alignment: .leading) {
+            Text(self.textAreaTitle).fixedSize(horizontal: false, vertical: true)
             TextEditor(text: $profileText)
                 .foregroundColor(.secondary)
                 .textFieldStyle(RoundedBorderTextFieldStyle())

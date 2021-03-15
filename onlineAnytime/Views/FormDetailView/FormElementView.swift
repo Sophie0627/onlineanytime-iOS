@@ -16,10 +16,24 @@ struct FormElementView: View {
             switch self.formElement.element_type {
             case "text":
                 FormTextView(textTitle: self.formElement.element_title)
+            case "number":
+                FormTextView(textTitle: self.formElement.element_title)
             case "email":
                 FormTextView(textTitle: self.formElement.element_title)
-            case "europe_date":
+            case "address":
                 FormTextView(textTitle: self.formElement.element_title)
+            case "simple_name":
+                FormTextView(textTitle: self.formElement.element_title)
+            case "simple_phone":
+                FormTextView(textTitle: self.formElement.element_title)
+            case "money":
+                FormTextView(textTitle: self.formElement.element_title)
+            case "europe_date":
+                FormDateView(dateTitle: self.formElement.element_title)
+            case "date":
+                FormDateView(dateTitle: self.formElement.element_title)
+            case "time":
+                FormTimeView(timeTitle: self.formElement.element_title)
             case "page_break":
                 PageBreakView()
             case "section":
@@ -33,6 +47,8 @@ struct FormElementView: View {
                 FormRadioView(radioTitle: self.formElement.element_title, radioId: self.formElement.element_id)
             case "select":
                 FormSelectView(selectTitle: self.formElement.element_title, selectId: self.formElement.element_id)
+            case "signature":
+                FormSignView(signTitle: self.formElement.element_title)
             case "checkbox":
                 FormCheckBoxView(checkboxTitle: self.formElement.element_title, checkboxtId: self.formElement.element_id)
 //                Text("\(pageNumber)Result: " + self.formElement.element_type)
