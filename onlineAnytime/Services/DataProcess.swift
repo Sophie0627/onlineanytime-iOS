@@ -8,7 +8,22 @@
 import Foundation
 
 public class DataProcess {
-    func DataProcess() {
+    
+    func dataProcess(token: String) {
         print("Data processing...")
+        self.dataUpdate(token: token)
+        self.dataSubmit(token: token)
+    }
+    
+    func dataUpdate(token: String) {
+        print("Data updating...")
+        let apiService: ApiService = ApiService()
+        
+        apiService.fetchFormData(token: token)
+        apiService.fetchFormElementOption(token: token)
+    }
+    
+    func dataSubmit(token: String) {
+        print("Data submitting...")
     }
 }

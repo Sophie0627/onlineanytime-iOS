@@ -43,4 +43,73 @@ class ApiService
         }
         task.resume()
     }
+    
+    func fetchFormElementOption(token: String) {
+        guard let url = URL(string: "https://online-anytime.com.au/olat/newapi/form_elements_options") else {
+            print("Invalid URL")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(token, forHTTPHeaderField: "token")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(FormElementOptionResponse.self, from: data) {
+                    // we have good data – go back to the main thread
+                    DispatchQueue.main.async {
+                        // update our UI
+                        var formElementOptions: [FormElementOption]
+                        formElementOptions = decodedResponse.forms
+                        
+                        let formOptionDB: FormOptionDBHelper = FormOptionDBHelper()
+                        
+                        for formElementOption in formElementOptions {
+                            formOptionDB.insert(aeoId: formElementOption.aeo_id, formId: formElementOption.form_id, elementId: formElementOption.element_id, optionId: formElementOption.option_id, position: formElementOption.position, option: formElementOption.option, optionIsDefault: formElementOption.option_is_default, optionIsHidden: formElementOption.option_is_hidden, live: formElementOption.live)
+                        }
+                        
+                    }
+                    // everything is good, so we can exit
+                    return
+                }
+            }
+
+            // if we're still here it means there was a problem
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+       }.resume()
+    }
+    
+    func fetchFormData(token: String) {
+        print("Fetching form data...")
+        guard let url = URL(string: "https://online-anytime.com.au/olat/newapi/forms") else {
+            print("Invalid URL")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(token, forHTTPHeaderField: "token")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(FormListResponse.self, from: data) {
+                    // we have good data – go back to the main thread
+                    DispatchQueue.main.async {
+                        // update our UI
+                        var formList: [FormList]
+                        formList = decodedResponse.forms
+                        
+                        let formDB: FormDBHelper = FormDBHelper()
+                        
+                        for form in formList {
+                            formDB.insert(formId: form.form_id, formName: form.form_name, formDescription: form.form_description)
+                        }
+                    }
+                    // everything is good, so we can exit
+                    return
+                }
+            }
+
+            // if we're still here it means there was a problem
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
+    }
 }

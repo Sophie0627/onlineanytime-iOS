@@ -38,7 +38,7 @@ class AuthUser : ObservableObject {
                 print(parsedData)
                 self.token = parsedData.token
                 self.signedIn = true
-                dataProcess.DataProcess()
+                dataProcess.dataProcess(token: self.token)
             }
         }
         catch
