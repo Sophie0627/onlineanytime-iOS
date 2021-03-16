@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import ToastUI
 
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
-    
-//    @ObservedObject var authUserViewModel = AuthUserViewModel()
     @EnvironmentObject var authUser: AuthUser
+    @State private var presentingToast: Bool = false
     
     var body: some View {
+        
         Color(red: 250, green: 250, blue: 250, opacity: 1.0)
             .overlay(
                 VStack {
@@ -50,6 +51,12 @@ struct LoginView: View {
                     }.padding().background(Color.green)
                     .cornerRadius(4.0)
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 15, trailing: 20))
+//                    .toast(isPresented: $presentingToast) {
+//                      print("Toast dismissed")
+//                    } content: {
+//                      ToastView("Loading...")
+//                        .toastViewStyle(IndefiniteProgressToastViewStyle())
+//                    }
                     
                     Text("www.civilsafety.edu.au")
                 }
@@ -59,10 +66,8 @@ struct LoginView: View {
     }
     
     func submit() {
-//        print(self.authUser.signedIn)
+        self.presentingToast = true
         self.authUser.signIn(email: self.email, password: self.password)
-//        print("[token]", self.authUserViewModel.token)
-//        self.isLoggedin = true
     }
 }
 

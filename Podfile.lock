@@ -7,10 +7,12 @@ PODS:
   - SDWebImageSwiftUI (2.0.2):
     - SDWebImage (~> 5.10)
   - SweeterSwift (1.1.4)
+  - ToastUI (2.0.0)
 
 DEPENDENCIES:
   - RadioGroup
   - SDWebImageSwiftUI
+  - ToastUI
 
 SPEC REPOS:
   trunk:
@@ -18,13 +20,15 @@ SPEC REPOS:
     - SDWebImage
     - SDWebImageSwiftUI
     - SweeterSwift
+    - ToastUI
 
 SPEC CHECKSUMS:
   RadioGroup: 7015c71759c90dbaae7050f33cfbc1de780e27a7
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
   SweeterSwift: 8a90cf3156f5a1b6f39785c479369a16633b5ea9
+  ToastUI: 391eb9a1cc15e7ef4b79ee112e4a0b969259154f
 
-PODFILE CHECKSUM: c206145c284e204e7ed1eeef6717aa603c3b54ce
+PODFILE CHECKSUM: 41cc55d4ec78348e88e174cbae47bae5802f5bf0
 
 COCOAPODS: 1.10.1

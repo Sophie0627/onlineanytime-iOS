@@ -96,7 +96,7 @@ class FormOptionDBHelper
             while sqlite3_step(queryStatement) == SQLITE_ROW {
                 let option = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
                 options.append(option)
-                print("Query Result: \(option)")
+//                print("Query Result: \(option)")
             }
         } else {
             print("SELECT statement could not be prepared")
@@ -121,8 +121,8 @@ class FormOptionDBHelper
                 let optionIsHidden = sqlite3_column_int(queryStatement, 7)
                 let live = sqlite3_column_int(queryStatement, 8)
                 formOptions.append(FormElementOption(aeo_id: Int(aeoId), form_id: Int(formId), element_id: Int(elementId), option_id: Int(optionId), position: Int(position), option: option, option_is_default: Int(optionIsDefault), option_is_hidden: Int(optionIsHidden), live: Int(live)))
-                print("Query Result:")
-                print("\(aeoId) | \(option) | \(formId)")
+//                print("Query Result:")
+//                print("\(aeoId) | \(option) | \(formId)")
             }
         } else {
             print("SELECT statement could not be prepared")

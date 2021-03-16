@@ -12,7 +12,6 @@ struct FormDetailView: View {
     
     @EnvironmentObject var authUser: AuthUser
     @EnvironmentObject var screenInfo: ScreenInfo
-//    @EnvironmentObject var formElementList: FormElementListViewModel
     
     var body: some View {
         VStack(spacing: 0.0) {
@@ -20,28 +19,66 @@ struct FormDetailView: View {
                 HStack(content: {
                     Button(action: {
                         self.screenInfo.screenInfo = "home"
-//                        self.formElementList.formElementList = []
                     }) {
                         Image("back_icon").padding()
                     }
                     Text(self.screenInfo.formName).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
-                    Text("Submit").foregroundColor(.white).padding()
-                        .onTapGesture {
-                            self.screenInfo.pageNumber += 1
-                        }
+                    CustomButton()
                 })
             ).frame(height: 60)
             ScrollView {
                 VStack {
                     Text(self.screenInfo.formName).frame(maxWidth: .infinity).padding(.vertical, 10.0).frame(maxWidth: .infinity, alignment: .leading)
-//                    HTMLStringView(htmlContent: self.screenInfo.formDescription)
-//                    TextCustom(html: self.screenInfo.formDescription)
                     Text(self.screenInfo.formDescription.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)).fixedSize(horizontal: false, vertical: true)
                     FormElementListView().frame(maxWidth: .infinity, alignment: .leading)
+                    SubmitButton()
                 }
             }.padding()
             .frame(maxHeight: .infinity)
             
+        }
+    }
+}
+
+struct CustomButton: View {
+    @EnvironmentObject var screenInfo: ScreenInfo
+    
+    var body: some View {
+        let formElementDB: FormElementDBHelper = FormElementDBHelper()
+        if self.screenInfo.pageNumber == formElementDB.getPageNumber(formId: self.screenInfo.formId) {
+            Text("Submit").foregroundColor(.white).padding()
+                .onTapGesture {
+//                    self.screenInfo.pageNumber += 1
+                }
+        } else {
+            Text("Continue").foregroundColor(.white).padding()
+                .onTapGesture {
+                    self.screenInfo.pageNumber += 1
+                }
+        }
+    }
+}
+
+struct SubmitButton: View {
+    @EnvironmentObject var screenInfo: ScreenInfo
+    
+    var body: some View {
+        let formElementDB: FormElementDBHelper = FormElementDBHelper()
+        if self.screenInfo.pageNumber == formElementDB.getPageNumber(formId: self.screenInfo.formId) {
+            Button(action: {}) {
+                HStack(alignment: .center) {
+                    Spacer()
+                    Text("SUBMIT").bold().foregroundColor(.white)
+                    Spacer()
+                }
+                                
+            }.padding()
+            .frame(width: 150)
+            .background(Color.green)
+            .cornerRadius(4.0)
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 15, trailing: 20))
+        } else {
+            VStack {}
         }
     }
 }
@@ -54,32 +91,32 @@ struct FormDetailView_Previews: PreviewProvider {
     }
 }
 
-struct HTMLStringView: UIViewRepresentable {
-    let htmlContent: String
-
-    func makeUIView(context: Context) -> WKWebView {
-        return WKWebView()
-    }
-
-    func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.loadHTMLString("<p>" + htmlContent + "</p>", baseURL: nil)
-    }
-}
-
-
-struct TextCustom: UIViewRepresentable {
-  let html: String
-  func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<Self>) {
-    DispatchQueue.main.async {
-      let data = Data(self.html.utf8)
-      if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-        uiView.isEditable = false
-        uiView.attributedText = attributedString
-      }
-    }
-  }
-  func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextView {
-    let label = UITextView()
-    return label
-  }
-}
+//struct HTMLStringView: UIViewRepresentable {
+//    let htmlContent: String
+//
+//    func makeUIView(context: Context) -> WKWebView {
+//        return WKWebView()
+//    }
+//
+//    func updateUIView(_ uiView: WKWebView, context: Context) {
+//        uiView.loadHTMLString("<p>" + htmlContent + "</p>", baseURL: nil)
+//    }
+//}
+//
+//
+//struct TextCustom: UIViewRepresentable {
+//  let html: String
+//  func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<Self>) {
+//    DispatchQueue.main.async {
+//      let data = Data(self.html.utf8)
+//      if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+//        uiView.isEditable = false
+//        uiView.attributedText = attributedString
+//      }
+//    }
+//  }
+//  func makeUIView(context: UIViewRepresentableContext<Self>) -> UITextView {
+//    let label = UITextView()
+//    return label
+//  }
+//}

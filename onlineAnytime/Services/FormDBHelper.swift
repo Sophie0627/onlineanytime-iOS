@@ -90,7 +90,7 @@ class FormDBHelper
             while sqlite3_step(queryStatement) == SQLITE_ROW {
                 let formId = sqlite3_column_int(queryStatement, 0)
                 formIds.append(Int(formId))
-                print("Query Result: \(formId)")
+//                print("Query Result: \(formId)")
             }
         } else {
             print("SELECT statement could not be prepared")
@@ -109,8 +109,8 @@ class FormDBHelper
                 let formName = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
                 let formDescription = String(describing: String(cString: sqlite3_column_text(queryStatement, 2)))
                 forms.append(FormList(form_id: Int(formId), form_name: formName, form_description: formDescription))
-                print("Query Result:")
-                print("\(formId) | \(formName) | \(formDescription)")
+//                print("Query Result:")
+//                print("\(formId) | \(formName) | \(formDescription)")
             }
         } else {
             print("SELECT statement could not be prepared")

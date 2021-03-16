@@ -112,14 +112,31 @@ class FormElementDBHelper
                 let elementMediaImageSrc = String(describing: String(cString: sqlite3_column_text(queryStatement, 11)))
                 let elementMediaPdfSrc = String(describing: String(cString: sqlite3_column_text(queryStatement, 12)))
                 formElements.append(FormElementWithId(formElement: FormElement(element_id: Int(elementId), element_title: elementTitle, element_guidelines: elementGuideline, element_type: elementType, element_position: Int(elementPosition), element_page_number: Int(elementPageNumber), element_default_value: elementDefaultValue, element_constraint: elementConstraint, element_address_hideline2: Int(elementAddressHideline2), element_media_type: elementMediaType, element_media_image_src: elementMediaImageSrc, element_media_pdf_src: elementMediaPdfSrc), formId: Int(formId)))
-                print("Query Result:")
-                print("\(formId) | \(elementId) | \(elementTitle)")
+//                print("Query Result:")
+//                print("\(formId) | \(elementId) | \(elementTitle)")
             }
         } else {
             print("SELECT statement could not be prepared")
         }
         sqlite3_finalize(queryStatement)
         return formElements
+    }
+    
+    func getPageNumber(formId: Int) -> Int {
+        let queryStatementString = "SELECT MAX(elementPageNumber) FROM formElement WHERE formId = \(formId);"
+        var queryStatement: OpaquePointer? = nil
+        var pageNumber : Int = 0
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                pageNumber = Int(sqlite3_column_int(queryStatement, 0))
+//                print("Query Result:")
+//                print("\(formId) | \(elementId) | \(elementTitle)")
+            }
+        } else {
+            print("SELECT statement could not be prepared")
+        }
+        sqlite3_finalize(queryStatement)
+        return pageNumber
     }
 
     func read() -> [FormElementWithId] {
@@ -142,8 +159,8 @@ class FormElementDBHelper
                 let elementMediaImageSrc = String(describing: String(cString: sqlite3_column_text(queryStatement, 11)))
                 let elementMediaPdfSrc = String(describing: String(cString: sqlite3_column_text(queryStatement, 12)))
                 formElements.append(FormElementWithId(formElement: FormElement(element_id: Int(elementId), element_title: elementTitle, element_guidelines: elementGuideline, element_type: elementType, element_position: Int(elementPosition), element_page_number: Int(elementPageNumber), element_default_value: elementDefaultValue, element_constraint: elementConstraint, element_address_hideline2: Int(elementAddressHideline2), element_media_type: elementMediaType, element_media_image_src: elementMediaImageSrc, element_media_pdf_src: elementMediaPdfSrc), formId: Int(formId)))
-                print("Query Result:")
-                print("\(formId) | \(elementId) | \(elementTitle)")
+//                print("Query Result:")
+//                print("\(formId) | \(elementId) | \(elementTitle)")
             }
         } else {
             print("SELECT statement could not be prepared")

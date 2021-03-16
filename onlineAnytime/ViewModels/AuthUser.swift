@@ -10,11 +10,13 @@ import Foundation
 class AuthUser : ObservableObject {
     
     @Published var signedIn: Bool
+    
     private var token: String = ""
     var dataProcess = DataProcess()
     
     init(signedIn:Bool) {
         self.signedIn = signedIn
+
     }
     
     // Make sure the API calls once they are finished modify the values on the Main Thread
