@@ -11,17 +11,18 @@ import RadioGroup
 struct FormRadioView: View {
     
     @EnvironmentObject var screenInfo: ScreenInfo
-    @EnvironmentObject var formElementOptions: FormElementOptionViewModel
     @State var selection: Int = 0
     
     var radioTitle: String
     var radioId: Int
     
     var body: some View {
+        let formOptionDB: FormOptionDBHelper = FormOptionDBHelper()
+        
         VStack(alignment: .leading) {
             Text(self.radioTitle).fixedSize(horizontal: false, vertical: true)
             HStack {
-                RadioGroupPicker(selectedIndex: $selection, titles: self.formElementOptions.getOptions(formId: self.screenInfo.formId, elementId: self.radioId))
+                RadioGroupPicker(selectedIndex: $selection, titles: formOptionDB.getOptions(formId: self.screenInfo.formId, elementId: self.radioId))
                     .fixedSize()
                 Spacer()
             }

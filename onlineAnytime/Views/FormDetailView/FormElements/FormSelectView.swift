@@ -10,7 +10,6 @@ import SwiftUI
 struct FormSelectView: View {
     
     @EnvironmentObject var screenInfo: ScreenInfo
-    @EnvironmentObject var formElementOptions: FormElementOptionViewModel
     
     var selectTitle: String
     var selectId: Int
@@ -19,7 +18,9 @@ struct FormSelectView: View {
     @State private var selectedFrameworkIndex = 0
     
     var body: some View {
-        let options = self.formElementOptions.getOptions(formId: self.screenInfo.formId, elementId: self.selectId)
+        let formOptionDB: FormOptionDBHelper = FormOptionDBHelper()
+        let options = formOptionDB.getOptions(formId: self.screenInfo.formId, elementId: self.selectId)
+        
         VStack(spacing: 0.0) {
             Text(self.selectTitle + ": \(options[selectedFrameworkIndex])").fixedSize(horizontal: false, vertical: true)
             Picker(selection: $selectedFrameworkIndex, label: Text("")) {

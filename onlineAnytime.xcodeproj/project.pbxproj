@@ -40,6 +40,7 @@
 		E4C1CB2E260017D200C6265C /* DataProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C1CB2D260017D200C6265C /* DataProcess.swift */; };
 		E4D36B352600889000581880 /* FormDBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D36B342600889000581880 /* FormDBHelper.swift */; };
 		E4D36B382600AE4000581880 /* FormOptionDBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D36B372600AE4000581880 /* FormOptionDBHelper.swift */; };
+		E4D36B3B2600C1DE00581880 /* FormElementDBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D36B3A2600C1DE00581880 /* FormElementDBHelper.swift */; };
 		E4DAF38525F9F7A3006B98DB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DAF38425F9F7A2006B98DB /* ApiService.swift */; };
 		E4DAF38825FA0C46006B98DB /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DAF38725FA0C46006B98DB /* AuthUser.swift */; };
 		E4DAF38C25FA2C02006B98DB /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DAF38B25FA2C02006B98DB /* Form.swift */; };
@@ -87,6 +88,7 @@
 		E4C1CB2D260017D200C6265C /* DataProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProcess.swift; sourceTree = "<group>"; };
 		E4D36B342600889000581880 /* FormDBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDBHelper.swift; sourceTree = "<group>"; };
 		E4D36B372600AE4000581880 /* FormOptionDBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormOptionDBHelper.swift; sourceTree = "<group>"; };
+		E4D36B3A2600C1DE00581880 /* FormElementDBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormElementDBHelper.swift; sourceTree = "<group>"; };
 		E4DAF38425F9F7A2006B98DB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		E4DAF38725FA0C46006B98DB /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		E4DAF38B25FA2C02006B98DB /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				E4C1CB2D260017D200C6265C /* DataProcess.swift */,
 				E4D36B342600889000581880 /* FormDBHelper.swift */,
 				E4D36B372600AE4000581880 /* FormOptionDBHelper.swift */,
+				E4D36B3A2600C1DE00581880 /* FormElementDBHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				E4C1CB2B260002CA00C6265C /* Reach.swift in Sources */,
 				E4EC86EA25F752A200997C0B /* onlineAnytimeApp.swift in Sources */,
 				E4DAF38C25FA2C02006B98DB /* Form.swift in Sources */,
+				E4D36B3B2600C1DE00581880 /* FormElementDBHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

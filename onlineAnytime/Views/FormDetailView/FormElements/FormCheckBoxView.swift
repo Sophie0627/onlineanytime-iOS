@@ -9,7 +9,6 @@ import SwiftUI
 
 struct FormCheckBoxView: View {
     @EnvironmentObject var screenInfo: ScreenInfo
-    @EnvironmentObject var formElementOptions: FormElementOptionViewModel
     
     var checkboxTitle: String
     var checkboxtId: Int
@@ -18,7 +17,8 @@ struct FormCheckBoxView: View {
     @State private var selectedFrameworkIndex = 0
     
     var body: some View {
-        let options = self.formElementOptions.getOptions(formId: self.screenInfo.formId, elementId: self.checkboxtId)
+        let formOptionDB: FormOptionDBHelper = FormOptionDBHelper()
+        let options = formOptionDB.getOptions(formId: self.screenInfo.formId, elementId: self.checkboxtId)
         VStack(alignment: .leading) {
             Text(self.checkboxTitle).fixedSize(horizontal: false, vertical: true)
             ForEach(0 ..< options.count) {

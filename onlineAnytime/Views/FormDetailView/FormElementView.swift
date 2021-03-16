@@ -8,51 +8,51 @@
 import SwiftUI
 
 struct FormElementView: View {
-    var formElement: FormElement
+    var formElement: FormElementWithId
     var pageNumber: Int
     
     var body: some View {
-        if self.pageNumber == self.formElement.element_page_number {
-            switch self.formElement.element_type {
+        if self.pageNumber == self.formElement.formElement.element_page_number {
+            switch self.formElement.formElement.element_type {
             case "text":
-                FormTextView(textTitle: self.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title)
             case "number":
-                FormTextView(textTitle: self.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title)
             case "email":
-                FormTextView(textTitle: self.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title)
             case "address":
-                FormTextView(textTitle: self.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title)
             case "simple_name":
-                FormTextView(textTitle: self.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title)
             case "simple_phone":
-                FormTextView(textTitle: self.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title)
             case "money":
-                FormTextView(textTitle: self.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title)
             case "europe_date":
-                FormDateView(dateTitle: self.formElement.element_title)
+                FormDateView(dateTitle: self.formElement.formElement.element_title)
             case "date":
-                FormDateView(dateTitle: self.formElement.element_title)
+                FormDateView(dateTitle: self.formElement.formElement.element_title)
             case "time":
-                FormTimeView(timeTitle: self.formElement.element_title)
+                FormTimeView(timeTitle: self.formElement.formElement.element_title)
             case "page_break":
                 PageBreakView()
             case "section":
-                FormTextView(textTitle: self.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title)
 //                TextCustom(html: self.formElement.element_title)
             case "file":
-                FormFileView(fileTitle: self.formElement.element_title)
+                FormFileView(fileTitle: self.formElement.formElement.element_title)
             case "textarea":
-                FormTextAreaView(textAreaTitle: self.formElement.element_title)
+                FormTextAreaView(textAreaTitle: self.formElement.formElement.element_title)
             case "radio":
-                FormRadioView(radioTitle: self.formElement.element_title, radioId: self.formElement.element_id)
+                FormRadioView(radioTitle: self.formElement.formElement.element_title, radioId: self.formElement.formElement.element_id)
             case "select":
-                FormSelectView(selectTitle: self.formElement.element_title, selectId: self.formElement.element_id)
+                FormSelectView(selectTitle: self.formElement.formElement.element_title, selectId: self.formElement.formElement.element_id)
             case "signature":
-                FormSignView(signTitle: self.formElement.element_title)
+                FormSignView(signTitle: self.formElement.formElement.element_title)
             case "checkbox":
-                FormCheckBoxView(checkboxTitle: self.formElement.element_title, checkboxtId: self.formElement.element_id)
+                FormCheckBoxView(checkboxTitle: self.formElement.formElement.element_title, checkboxtId: self.formElement.formElement.element_id)
             case "media":
-                FormMediaView(src: self.formElement.element_media_image_src ?? "")
+                FormMediaView(src: self.formElement.formElement.element_media_image_src ?? "")
 //                Text("\(pageNumber)Result: " + self.formElement.element_type)
             default:
                 VStack {}
@@ -80,6 +80,6 @@ struct FormElementView_Previews: PreviewProvider {
     static var pageNumber: Int = 1
     
     static var previews: some View {
-        FormElementView(formElement: self.formElement, pageNumber: pageNumber)
+        FormElementView(formElement: FormElementWithId(formElement: self.formElement, formId: -1), pageNumber: pageNumber)
     }
 }

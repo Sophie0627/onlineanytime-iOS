@@ -81,7 +81,24 @@ class FormDBHelper
         }
         sqlite3_finalize(insertStatement)
     }
-
+    
+    func getFormIds() -> [Int] {
+        let queryStatementString = "SELECT formId FROM form;"
+        var queryStatement: OpaquePointer? = nil
+        var formIds : [Int] = []
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                let formId = sqlite3_column_int(queryStatement, 0)
+                formIds.append(Int(formId))
+                print("Query Result: \(formId)")
+            }
+        } else {
+            print("SELECT statement could not be prepared")
+        }
+        sqlite3_finalize(queryStatement)
+        return formIds
+    }
+    
     func read() -> [FormList] {
         let queryStatementString = "SELECT * FROM form;"
         var queryStatement: OpaquePointer? = nil

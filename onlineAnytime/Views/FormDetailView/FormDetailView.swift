@@ -12,7 +12,7 @@ struct FormDetailView: View {
     
     @EnvironmentObject var authUser: AuthUser
     @EnvironmentObject var screenInfo: ScreenInfo
-    @EnvironmentObject var formElementList: FormElementListViewModel
+//    @EnvironmentObject var formElementList: FormElementListViewModel
     
     var body: some View {
         VStack(spacing: 0.0) {
@@ -20,7 +20,7 @@ struct FormDetailView: View {
                 HStack(content: {
                     Button(action: {
                         self.screenInfo.screenInfo = "home"
-                        self.formElementList.formElementList = []
+//                        self.formElementList.formElementList = []
                     }) {
                         Image("back_icon").padding()
                     }
@@ -42,34 +42,7 @@ struct FormDetailView: View {
             }.padding()
             .frame(maxHeight: .infinity)
             
-        }.onAppear(perform: self.fetchFormInfo)
-    }
-    
-    func fetchFormInfo() {
-        guard let url = URL(string: "https://online-anytime.com.au/olat/newapi/form_elements/\(self.screenInfo.formId)") else {
-            print("Invalid URL")
-            return
         }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue(authUser.getToken(), forHTTPHeaderField: "token")
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode(FormDetailResponse.self, from: data) {
-                    // we have good data – go back to the main thread
-                    DispatchQueue.main.async {
-                        // update our UI
-                        self.formElementList.formElementList = decodedResponse.forms
-                    }
-
-                    // everything is good, so we can exit
-                    return
-                }
-            }
-
-            // if we're still here it means there was a problem
-            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
-        }.resume()
     }
 }
 

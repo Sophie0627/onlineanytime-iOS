@@ -43,9 +43,9 @@ class FormOptionDBHelper
         {
             if sqlite3_step(createTableStatement) == SQLITE_DONE
             {
-                print("form table created.")
+                print("formOption table created.")
             } else {
-                print("form table could not be created.")
+                print("formOption table could not be created.")
             }
         } else {
             print("CREATE TABLE statement could not be prepared.")
@@ -86,6 +86,23 @@ class FormOptionDBHelper
             print("INSERT statement could not be prepared.")
         }
         sqlite3_finalize(insertStatement)
+    }
+    
+    func getOptions(formId: Int, elementId: Int) -> [String] {
+        let queryStatementString = "SELECT option FROM formOption WHERE formId = \(formId) AND elementId = \(elementId);"
+        var queryStatement: OpaquePointer? = nil
+        var options : [String] = []
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                let option = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
+                options.append(option)
+                print("Query Result: \(option)")
+            }
+        } else {
+            print("SELECT statement could not be prepared")
+        }
+        sqlite3_finalize(queryStatement)
+        return options
     }
 
     func read() -> [FormElementOption] {

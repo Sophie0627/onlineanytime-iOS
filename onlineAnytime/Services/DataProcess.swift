@@ -21,6 +21,13 @@ public class DataProcess {
         
         apiService.fetchFormData(token: token)
         apiService.fetchFormElementOption(token: token)
+        
+        let formDB: FormDBHelper = FormDBHelper()
+        let formIds: [Int] = formDB.getFormIds()
+        
+        for formId in formIds {
+            apiService.fetchFormElement(token: token, formId: formId)
+        }
     }
     
     func dataSubmit(token: String) {
