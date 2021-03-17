@@ -14,6 +14,7 @@ struct FormSignView: View {
     @State private var lineWidth: CGFloat = 3.0
     
     var signTitle: String = ""
+    var id: Int = -1
     
     var body: some View {
         VStack(alignment: .center) {

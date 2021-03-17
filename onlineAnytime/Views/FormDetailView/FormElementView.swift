@@ -15,40 +15,40 @@ struct FormElementView: View {
         if self.pageNumber == self.formElement.formElement.element_page_number {
             switch self.formElement.formElement.element_type {
             case "text":
-                FormTextView(textTitle: self.formElement.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "number":
-                FormTextView(textTitle: self.formElement.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "email":
-                FormTextView(textTitle: self.formElement.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "address":
-                FormTextView(textTitle: self.formElement.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "simple_name":
-                FormTextView(textTitle: self.formElement.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "simple_phone":
-                FormTextView(textTitle: self.formElement.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "money":
-                FormTextView(textTitle: self.formElement.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "europe_date":
-                FormDateView(dateTitle: self.formElement.formElement.element_title)
+                FormDateView(dateTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "date":
-                FormDateView(dateTitle: self.formElement.formElement.element_title)
+                FormDateView(dateTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "time":
-                FormTimeView(timeTitle: self.formElement.formElement.element_title)
+                FormTimeView(timeTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "page_break":
                 PageBreakView()
             case "section":
-                FormTextView(textTitle: self.formElement.formElement.element_title)
+                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
 //                TextCustom(html: self.formElement.element_title)
             case "file":
-                FormFileView(fileTitle: self.formElement.formElement.element_title)
+                FormFileView(fileTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "textarea":
-                FormTextAreaView(textAreaTitle: self.formElement.formElement.element_title)
+                FormTextAreaView(textAreaTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "radio":
                 FormRadioView(radioTitle: self.formElement.formElement.element_title, radioId: self.formElement.formElement.element_id)
             case "select":
                 FormSelectView(selectTitle: self.formElement.formElement.element_title, selectId: self.formElement.formElement.element_id)
             case "signature":
-                FormSignView(signTitle: self.formElement.formElement.element_title)
+                FormSignView(signTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "checkbox":
                 FormCheckBoxView(checkboxTitle: self.formElement.formElement.element_title, checkboxtId: self.formElement.formElement.element_id)
             case "media":

@@ -19,14 +19,15 @@ class ApiService
         return data.map { String($0) }.joined(separator: "&")
     }
 
-    static func callPost(url:URL, params:[String:Any], finish: @escaping ((message:String, data:Data?)) -> Void)
+    static func callPost(url:URL, token: String, params:[String:Any], finish: @escaping ((message:String, data:Data?)) -> Void)
     {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
         let postString = self.getPostString(params: params)
         request.httpBody = postString.data(using: .utf8)
-
+        request.setValue(token, forHTTPHeaderField: "token")
+        
         var result:(message:String, data:Data?) = (message: "Fail", data: nil)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if(error != nil)
@@ -42,6 +43,37 @@ class ApiService
             finish(result)
         }
         task.resume()
+    }
+    
+    static func submit(token: String, formId: Int, keys: [String], values: [String]) {
+        var params:[String: String] = ["formId": String(formId), "id": "0"]
+        
+        for (index, element) in keys.enumerated() {
+            params[element] = values[index]
+        }
+        
+        let url = URL(string: "https://online-anytime.com.au/olat/newapi/form/save")!
+        
+        self.callPost(url: url, token: token, params: params, finish: self.submitFinish)
+    }
+    
+    static func submitFinish(message: String, data: Data?) {
+        print("success")
+//        do
+//        {
+//            if let jsonData = data
+//            {
+//                let parsedData = try JSONDecoder().decode(UserInfo.self, from: jsonData)
+//                print(parsedData)
+////                self.token = parsedData.token
+////                self.signedIn = true
+////                dataProcess.dataProcess(token: self.token)
+//            }
+//        }
+//        catch
+//        {
+//            print("Parse Error: \(error)")
+//        }
     }
     
     func fetchFormElement(token: String, formId: Int) {

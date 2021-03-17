@@ -42,6 +42,7 @@ struct FormDetailView: View {
 
 struct CustomButton: View {
     @EnvironmentObject var screenInfo: ScreenInfo
+    @EnvironmentObject var authUser: AuthUser
     
     var body: some View {
         let formElementDB: FormElementDBHelper = FormElementDBHelper()
@@ -49,6 +50,7 @@ struct CustomButton: View {
             Text("Submit").foregroundColor(.white).padding()
                 .onTapGesture {
 //                    self.screenInfo.pageNumber += 1
+                    ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values)
                 }
         } else {
             Text("Continue").foregroundColor(.white).padding()
@@ -61,11 +63,14 @@ struct CustomButton: View {
 
 struct SubmitButton: View {
     @EnvironmentObject var screenInfo: ScreenInfo
+    @EnvironmentObject var authUser: AuthUser
     
     var body: some View {
         let formElementDB: FormElementDBHelper = FormElementDBHelper()
         if self.screenInfo.pageNumber == formElementDB.getPageNumber(formId: self.screenInfo.formId) {
-            Button(action: {}) {
+            Button(action: {
+                ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values)
+            }) {
                 HStack(alignment: .center) {
                     Spacer()
                     Text("SUBMIT").bold().foregroundColor(.white)

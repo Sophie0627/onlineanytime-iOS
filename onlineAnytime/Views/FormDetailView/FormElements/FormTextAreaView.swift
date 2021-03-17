@@ -10,6 +10,7 @@ import SwiftUI
 struct FormTextAreaView: View {
     
     var textAreaTitle: String
+    var id: Int
     @State private var profileText: String = "Please write"
     
     var body: some View {
@@ -24,6 +25,6 @@ struct FormTextAreaView: View {
 
 struct FormTextAreaView_Previews: PreviewProvider {
     static var previews: some View {
-        FormTextAreaView(textAreaTitle: "")
+        FormTextAreaView(textAreaTitle: "", id: -1)
     }
 }

@@ -26,7 +26,7 @@ class AuthUser : ObservableObject {
             
             let url = URL(string: "https://online-anytime.com.au/olat/newapi/login")!
             
-            ApiService.callPost(url: url, params: params, finish: self.finishPost)
+            ApiService.callPost(url: url, token: "", params: params, finish: self.finishPost)
     }
             
         

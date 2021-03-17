@@ -14,6 +14,8 @@ class ScreenInfo : ObservableObject {
     @Published var formName: String
     @Published var formDescription: String
     @Published var pageNumber: Int
+    @Published var keys: [String]
+    @Published var values: [String]
     
     init(screenInfo: String) {
         self.screenInfo = screenInfo
@@ -21,5 +23,16 @@ class ScreenInfo : ObservableObject {
         self.formName = ""
         self.formDescription = ""
         self.pageNumber = 1
+        self.keys = []
+        self.values = []
+    }
+    
+    func setValues(elementId: String, value: String) {
+        if let index = self.keys.firstIndex(of: elementId) {
+            self.values[index] = value
+        } else {
+            self.keys.append(elementId)
+            self.values.append(value)
+        }
     }
 }

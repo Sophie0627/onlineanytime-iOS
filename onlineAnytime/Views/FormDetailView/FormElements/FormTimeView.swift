@@ -10,6 +10,7 @@ import SwiftUI
 struct FormTimeView: View {
     @State var selectedTime = Date()
     var timeTitle: String
+    var id: Int
         
     var body: some View {
         VStack {
@@ -20,6 +21,6 @@ struct FormTimeView: View {
 
 struct FormTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        FormTimeView(timeTitle: "")
+        FormTimeView(timeTitle: "", id: -1)
     }
 }

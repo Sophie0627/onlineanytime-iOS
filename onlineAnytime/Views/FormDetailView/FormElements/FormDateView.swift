@@ -10,6 +10,7 @@ import SwiftUI
 struct FormDateView: View {
     @State var selectedDate = Date()
     var dateTitle: String
+    var id: Int
         
     var body: some View {
         VStack {
@@ -20,6 +21,6 @@ struct FormDateView: View {
 
 struct FormDateView_Previews: PreviewProvider {
     static var previews: some View {
-        FormDateView(dateTitle: "")
+        FormDateView(dateTitle: "", id: -1)
     }
 }

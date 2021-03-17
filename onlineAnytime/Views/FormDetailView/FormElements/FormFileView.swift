@@ -10,6 +10,7 @@ import SwiftUI
 struct FormFileView: View {
     
     var fileTitle: String
+    var id: Int
     
     var body: some View {
         VStack {
@@ -23,6 +24,6 @@ struct FormFileView: View {
 
 struct FormFileView_Previews: PreviewProvider {
     static var previews: some View {
-        FormFileView(fileTitle: "")
+        FormFileView(fileTitle: "", id: -1)
     }
 }
