@@ -24,6 +24,20 @@ struct FormRadioView: View {
             HStack {
                 RadioGroupPicker(selectedIndex: $selection, titles: formOptionDB.getOptions(formId: self.screenInfo.formId, elementId: self.radioId))
                     .fixedSize()
+                    .onTapGesture(perform: {
+                        let length: Int = formOptionDB.getOptions(formId: self.screenInfo.formId, elementId: self.radioId).count
+                        var radioParam: Int
+                        if self.selection == length - 1 {
+                            radioParam = 1
+                        } else {
+                            radioParam = self.selection + 2
+                        }
+                        print("------------------selectedIndex \(selection) | radioParam \(radioParam)")
+                        screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(radioParam))
+                    })
+                    .onAppear(perform: {
+                        screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(self.selection + 1))
+                    })
                 Spacer()
             }
         }

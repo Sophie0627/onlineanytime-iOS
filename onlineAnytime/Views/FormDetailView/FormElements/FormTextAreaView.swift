@@ -12,6 +12,7 @@ struct FormTextAreaView: View {
     var textAreaTitle: String
     var id: Int
     @State private var profileText: String = "Please write"
+    @EnvironmentObject var screenInfo: ScreenInfo
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -19,6 +20,9 @@ struct FormTextAreaView: View {
             TextEditor(text: $profileText)
                 .foregroundColor(.secondary)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .onChange(of: profileText) { newValue in
+                    screenInfo.setValues(elementId: "element_\(self.id)", value: self.profileText)
+                }
         }
     }
 }

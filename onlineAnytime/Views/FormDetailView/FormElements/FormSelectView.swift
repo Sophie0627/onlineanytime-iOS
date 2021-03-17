@@ -25,9 +25,15 @@ struct FormSelectView: View {
             Text(self.selectTitle + ": \(options[selectedFrameworkIndex])").fixedSize(horizontal: false, vertical: true)
             Picker(selection: $selectedFrameworkIndex, label: Text("")) {
                 ForEach(0 ..< options.count) {
-                    Text(options[$0])
+                    Text(options[$0]).tag([$0])
                 }
             }.fixedSize()
+            .onChange(of: selectedFrameworkIndex, perform: {tag in
+                screenInfo.setValues(elementId: "element_\(self.selectId)", value: String(tag + 1))
+            })
+            .onAppear(perform: {
+                screenInfo.setValues(elementId: "element_\(self.selectId)", value: "1")
+            })
         }.padding()
     }
 }

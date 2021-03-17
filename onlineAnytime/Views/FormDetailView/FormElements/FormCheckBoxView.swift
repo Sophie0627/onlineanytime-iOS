@@ -22,7 +22,7 @@ struct FormCheckBoxView: View {
         VStack(alignment: .leading) {
             Text(self.checkboxTitle).fixedSize(horizontal: false, vertical: true)
             ForEach(0 ..< options.count) {
-                CheckboxFieldView(text: options[$0])
+                CheckboxFieldView(text: options[$0], tag: $0, id: self.checkboxtId)
             }
         }
     }
@@ -36,8 +36,11 @@ struct FormCheckBoxView_Previews: PreviewProvider {
 
 struct CheckboxFieldView : View {
 
+    @EnvironmentObject var screenInfo: ScreenInfo
     @State var checkState:Bool = false
     var text: String
+    var tag: Int
+    var id: Int
 
     var body: some View {
 
@@ -46,7 +49,11 @@ struct CheckboxFieldView : View {
                 //1. Save state
                 self.checkState = !self.checkState
                 print("State : \(self.checkState)")
-
+                if checkState {
+                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag + 1)", value: "1")
+                } else {
+                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag + 1)", value: "0")
+                }
 
         }) {
             HStack(alignment: .top, spacing: 10) {
