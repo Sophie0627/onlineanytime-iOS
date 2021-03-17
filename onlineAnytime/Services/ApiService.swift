@@ -21,10 +21,12 @@ class ApiService
 
     static func callPost(url:URL, token: String, params:[String:Any], finish: @escaping ((message:String, data:Data?)) -> Void)
     {
+        print("------------------callpost function------------------")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
         let postString = self.getPostString(params: params)
+        print("---------------------postString \(postString)----------------------------")
         request.httpBody = postString.data(using: .utf8)
         request.setValue(token, forHTTPHeaderField: "token")
         
@@ -41,11 +43,14 @@ class ApiService
             }
 
             finish(result)
+            print(result.message)
         }
         task.resume()
     }
     
     static func submit(token: String, formId: Int, keys: [String], values: [String]) {
+        
+        print("--------------------submit function---------------------")
         var params:[String: String] = ["formId": String(formId), "id": "0"]
         
         for (index, element) in keys.enumerated() {

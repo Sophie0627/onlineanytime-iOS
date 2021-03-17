@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FormTimeView: View {
+    
+    @EnvironmentObject var screenInfo: ScreenInfo
     @State var selectedTime = Date()
     var timeTitle: String
     var id: Int
@@ -15,6 +17,16 @@ struct FormTimeView: View {
     var body: some View {
         VStack {
             DatePicker(self.timeTitle, selection: $selectedTime, displayedComponents: .hourAndMinute)
+                .onChange(of: selectedTime, perform: {selectedDate in
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "H:mm"
+                    screenInfo.setValues(elementId: "element_\(self.id)", value: formatter.string(from: selectedTime))
+                })
+                .onAppear(perform: {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "H:mm"
+                    screenInfo.setValues(elementId: "element_\(self.id)", value: formatter.string(from: self.selectedTime))
+                })
         }
     }
 }

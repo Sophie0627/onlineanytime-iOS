@@ -20,10 +20,10 @@ struct FormElementView: View {
                 FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "email":
                 FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
-            case "address":
-                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
-            case "simple_name":
-                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
+//            case "address":
+//                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
+//            case "simple_name":
+//                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "simple_phone":
                 FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "money":
@@ -36,8 +36,8 @@ struct FormElementView: View {
                 FormTimeView(timeTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "page_break":
                 PageBreakView()
-            case "section":
-                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
+//            case "section":
+//                FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
 //                TextCustom(html: self.formElement.element_title)
             case "file":
                 FormFileView(fileTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)

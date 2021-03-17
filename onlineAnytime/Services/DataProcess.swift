@@ -10,13 +10,11 @@ import Foundation
 public class DataProcess {
     
     func dataProcess(token: String) {
-        print("Data processing...")
         self.dataUpdate(token: token)
         self.dataSubmit(token: token)
     }
     
     func dataUpdate(token: String) {
-        print("Data updating...")
         let apiService: ApiService = ApiService()
         
         apiService.fetchFormData(token: token)
@@ -31,6 +29,11 @@ public class DataProcess {
     }
     
     func dataSubmit(token: String) {
-        print("Data submitting...")
+        let formSubmitDB: FormSubmitDBHelper = FormSubmitDBHelper()
+        let formSubmits: [FormSubmit] = formSubmitDB.read()
+        for formSubmit in formSubmits {
+            ApiService.submit(token: token, formId: formSubmit.formId, keys: formSubmit.keys.components(separatedBy: ";"), values: formSubmit.values.components(separatedBy: ";"))
+        }
+        formSubmitDB.delete()
     }
 }

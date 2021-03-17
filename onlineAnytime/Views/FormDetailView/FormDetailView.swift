@@ -19,10 +19,6 @@ struct FormDetailView: View {
                 HStack(content: {
                     Button(action: {
                         self.screenInfo.screenInfo = "home"
-//                        self.screenInfo.formId = -1
-//                        self.screenInfo.formName = ""
-//                        self.screenInfo.formDescription = ""
-//                        self.screenInfo.pageNumber = 1
                         self.screenInfo.keys = []
                         self.screenInfo.values = []
                     }) {
@@ -49,14 +45,31 @@ struct FormDetailView: View {
 struct CustomButton: View {
     @EnvironmentObject var screenInfo: ScreenInfo
     @EnvironmentObject var authUser: AuthUser
+    var status: Bool = Reach().isOnline()
+    
+    func encodedString(arr: [String]) -> String {
+        var encodedString: String = ""
+        for element in arr {
+            encodedString += "\(element);"
+        }
+        return encodedString
+    }
     
     var body: some View {
         let formElementDB: FormElementDBHelper = FormElementDBHelper()
         if self.screenInfo.pageNumber == formElementDB.getPageNumber(formId: self.screenInfo.formId) {
             Text("Submit").foregroundColor(.white).padding()
                 .onTapGesture {
-//                    self.screenInfo.pageNumber += 1
-                    ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values)
+                    print("------------ok-------------")
+                    let formSubmitDB: FormSubmitDBHelper = FormSubmitDBHelper()
+                    if self.status {
+                        ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values)
+                    } else {
+                        formSubmitDB.insert(formId: screenInfo.formId, keys: self.encodedString(arr: screenInfo.keys), values: encodedString(arr: screenInfo.values))
+                    }
+                    self.screenInfo.screenInfo = "home"
+                    self.screenInfo.keys = []
+                    self.screenInfo.values = []
                 }
         } else {
             Text("Continue").foregroundColor(.white).padding()
@@ -70,12 +83,29 @@ struct CustomButton: View {
 struct SubmitButton: View {
     @EnvironmentObject var screenInfo: ScreenInfo
     @EnvironmentObject var authUser: AuthUser
+    var status: Bool = Reach().isOnline()
+    
+    func encodedString(arr: [String]) -> String {
+        var encodedString: String = ""
+        for element in arr {
+            encodedString += "\(element);"
+        }
+        return encodedString
+    }
     
     var body: some View {
         let formElementDB: FormElementDBHelper = FormElementDBHelper()
         if self.screenInfo.pageNumber == formElementDB.getPageNumber(formId: self.screenInfo.formId) {
             Button(action: {
-                ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values)
+                let formSubmitDB: FormSubmitDBHelper = FormSubmitDBHelper()
+                if self.status {
+                    ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values)
+                } else {
+                    formSubmitDB.insert(formId: screenInfo.formId, keys: self.encodedString(arr: screenInfo.keys), values: encodedString(arr: screenInfo.values))
+                }
+                self.screenInfo.screenInfo = "home"
+                self.screenInfo.keys = []
+                self.screenInfo.values = []
             }) {
                 HStack(alignment: .center) {
                     Spacer()

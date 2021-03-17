@@ -24,3 +24,15 @@ struct FormList: Codable {
         self.form_description = form_description
     }
 }
+
+struct FormSubmit: Codable {
+    var formId: Int
+    var keys: String
+    var values: String
+    
+    init(formId: Int, keys: String, values: String) {
+        self.formId = formId
+        self.keys = keys
+        self.values = values
+    }
+}
