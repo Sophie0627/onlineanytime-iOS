@@ -27,8 +27,8 @@ class ApiService
         request.httpMethod = "POST"
 
         let postString = self.getPostString(params: params)
-        print("---------------------postString \(postString)----------------------------")
-        request.httpBody = postString.data(using: .utf8)
+        print("----------------postString\(postString)")
+        request.httpBody = postString.data(using: String.Encoding.utf8, allowLossyConversion: true)
         request.setValue(token, forHTTPHeaderField: "token")
         
         var result:(message:String, data:Data?) = (message: "Fail", data: nil)

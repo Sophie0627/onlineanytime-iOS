@@ -17,7 +17,7 @@ struct FormTimeView: View {
     var body: some View {
         VStack {
             DatePicker(self.timeTitle, selection: $selectedTime, displayedComponents: .hourAndMinute)
-                .onChange(of: selectedTime, perform: {selectedDate in
+                .onChange(of: selectedTime, perform: {selectedTime in
                     let formatter = DateFormatter()
                     formatter.dateFormat = "H:mm"
                     screenInfo.setValues(elementId: "element_\(self.id)", value: formatter.string(from: selectedTime))

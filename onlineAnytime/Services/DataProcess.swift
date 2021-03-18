@@ -32,7 +32,7 @@ public class DataProcess {
         let formSubmitDB: FormSubmitDBHelper = FormSubmitDBHelper()
         let formSubmits: [FormSubmit] = formSubmitDB.read()
         for formSubmit in formSubmits {
-            ApiService.submit(token: token, formId: formSubmit.formId, keys: formSubmit.keys.components(separatedBy: ";"), values: formSubmit.values.components(separatedBy: ";"))
+            ApiService.submit(token: token, formId: formSubmit.formId, keys: formSubmit.keys.components(separatedBy: "##"), values: formSubmit.values.components(separatedBy: "##"))
         }
         formSubmitDB.delete()
     }

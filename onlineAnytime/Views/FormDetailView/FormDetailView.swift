@@ -50,7 +50,7 @@ struct CustomButton: View {
     func encodedString(arr: [String]) -> String {
         var encodedString: String = ""
         for element in arr {
-            encodedString += "\(element);"
+            encodedString += "\(element)##"
         }
         return encodedString
     }
@@ -88,7 +88,7 @@ struct SubmitButton: View {
     func encodedString(arr: [String]) -> String {
         var encodedString: String = ""
         for element in arr {
-            encodedString += "\(element);"
+            encodedString += "\(element)##"
         }
         return encodedString
     }
