@@ -9,6 +9,7 @@ import Foundation
 
 class ApiService
 {
+    
     static func getPostString(params:[String:Any]) -> String
     {
         var data = [String]()

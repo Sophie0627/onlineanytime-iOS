@@ -12,7 +12,7 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @EnvironmentObject var authUser: AuthUser
-    @State private var presentingToast: Bool = false
+    @State private var isLoggingin: Bool = false
     
     var body: some View {
         
@@ -48,15 +48,17 @@ struct LoginView: View {
                             Spacer()
                         }
                                         
-                    }.padding().background(Color.green)
-                    .cornerRadius(4.0)
-                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 15, trailing: 20))
-//                    .toast(isPresented: $presentingToast) {
+                    }
+//                    .toast(isPresented: self.$isLoggingin) {
 //                      print("Toast dismissed")
 //                    } content: {
 //                      ToastView("Loading...")
 //                        .toastViewStyle(IndefiniteProgressToastViewStyle())
 //                    }
+                    .padding().background(Color.green)
+                    .cornerRadius(4.0)
+                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 15, trailing: 20))
+                    
                     
                     Text("www.civilsafety.edu.au")
                 }
@@ -66,8 +68,17 @@ struct LoginView: View {
     }
     
     func submit() {
-        self.presentingToast = true
-        self.authUser.signIn(email: self.email, password: self.password)
+        self.isLoggingin = true
+//        Dis
+//        DispatchQueue.async(group: DispatchGroup) {
+//            self.networkManager.loginFunction(username: self.usernameInput, password: self.passwordInput)
+//        }
+//        self.authUser.signIn(email: self.email, password: self.password)
+        DispatchQueue.main.async {
+            self.authUser.signIn(email: self.email, password: self.password)
+            print("----------ok-------")
+        }
+        print("------------login--------------")
     }
 }
 

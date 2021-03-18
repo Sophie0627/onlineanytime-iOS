@@ -25,6 +25,7 @@ class ScreenInfo : ObservableObject {
         self.pageNumber = 1
         self.keys = []
         self.values = []
+        
     }
     
     func setValues(elementId: String, value: String) {
