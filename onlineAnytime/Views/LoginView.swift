@@ -12,6 +12,7 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @EnvironmentObject var authUser: AuthUser
+    @EnvironmentObject var screenInfo: ScreenInfo
     @State private var isLoggingin: Bool = false
     @State private var isLoginFailed: Bool = false
     @State var toastText: String = "Logging in..."
@@ -93,6 +94,7 @@ struct LoginView: View {
                         print("Submitting data....")
                         self.authUser.signedIn = signedIn!
                         self.isLoggingin = false
+                        self.screenInfo.homeStatus = "login"
                     }
                 }
             }

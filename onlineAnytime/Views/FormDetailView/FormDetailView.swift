@@ -7,11 +7,13 @@
 
 import SwiftUI
 import WebKit
+import ToastUI
 
 struct FormDetailView: View {
     
     @EnvironmentObject var authUser: AuthUser
     @EnvironmentObject var screenInfo: ScreenInfo
+    @State var isSubmitting: Bool = false
     
     var body: some View {
         VStack(spacing: 0.0) {
@@ -21,11 +23,12 @@ struct FormDetailView: View {
                         self.screenInfo.screenInfo = "home"
                         self.screenInfo.keys = []
                         self.screenInfo.values = []
+                        self.screenInfo.homeStatus = ""
                     }) {
                         Image("back_icon").padding()
                     }
                     Text(self.screenInfo.formName).foregroundColor(.white).frame(maxWidth: .infinity, alignment: .leading)
-                    CustomButton()
+                    CustomButton(isSubmitting: self.$isSubmitting)
                 })
             ).frame(height: 60)
             ScrollView {
@@ -33,9 +36,16 @@ struct FormDetailView: View {
                     Text(self.screenInfo.formName).frame(maxWidth: .infinity).padding(.vertical, 10.0).frame(maxWidth: .infinity, alignment: .leading)
                     Text(self.screenInfo.formDescription.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)).fixedSize(horizontal: false, vertical: true)
                     FormElementListView().frame(maxWidth: .infinity, alignment: .leading)
-                    SubmitButton()
+                    SubmitButton(isSubmitting: self.$isSubmitting)
                 }
-            }.padding()
+            }
+            .toast(isPresented: self.$isSubmitting) {
+              print("Toast dismissed")
+            } content: {
+                ToastView("Submitting data...")
+                .toastViewStyle(IndefiniteProgressToastViewStyle())
+            }
+            .padding()
             .frame(maxHeight: .infinity)
             
         }
@@ -45,6 +55,7 @@ struct FormDetailView: View {
 struct CustomButton: View {
     @EnvironmentObject var screenInfo: ScreenInfo
     @EnvironmentObject var authUser: AuthUser
+    @Binding var isSubmitting: Bool
     var status: Bool = Reach().isOnline()
     
     func encodedString(arr: [String]) -> String {
@@ -60,18 +71,25 @@ struct CustomButton: View {
         if self.screenInfo.pageNumber == formElementDB.getPageNumber(formId: self.screenInfo.formId) {
             Text("Submit").foregroundColor(.white).padding()
                 .onTapGesture {
-                    print("------------ok-------------")
                     let formSubmitDB: FormSubmitDBHelper = FormSubmitDBHelper()
                     if self.status {
+                        self.isSubmitting = true
                         ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values) { result in
                             print("ok")
+                            self.isSubmitting = false
+                            self.screenInfo.screenInfo = "home"
+                            self.screenInfo.keys = []
+                            self.screenInfo.values = []
+                            self.screenInfo.homeStatus = ""
                         }
                     } else {
                         formSubmitDB.insert(formId: screenInfo.formId, keys: self.encodedString(arr: screenInfo.keys), values: encodedString(arr: screenInfo.values))
+                        self.screenInfo.screenInfo = "home"
+                        self.screenInfo.keys = []
+                        self.screenInfo.values = []
+                        self.screenInfo.homeStatus = "submit"
                     }
-                    self.screenInfo.screenInfo = "home"
-                    self.screenInfo.keys = []
-                    self.screenInfo.values = []
+                    
                 }
         } else {
             Text("Continue").foregroundColor(.white).padding()
@@ -86,6 +104,7 @@ struct SubmitButton: View {
     @EnvironmentObject var screenInfo: ScreenInfo
     @EnvironmentObject var authUser: AuthUser
     var status: Bool = Reach().isOnline()
+    @Binding var isSubmitting: Bool
     
     func encodedString(arr: [String]) -> String {
         var encodedString: String = ""
@@ -94,22 +113,30 @@ struct SubmitButton: View {
         }
         return encodedString
     }
-    
+ 
     var body: some View {
         let formElementDB: FormElementDBHelper = FormElementDBHelper()
         if self.screenInfo.pageNumber == formElementDB.getPageNumber(formId: self.screenInfo.formId) {
             Button(action: {
                 let formSubmitDB: FormSubmitDBHelper = FormSubmitDBHelper()
                 if self.status {
+                    self.isSubmitting = true
                     ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values) {result in
                         print("ok")
+                        self.screenInfo.screenInfo = "home"
+                        self.screenInfo.keys = []
+                        self.screenInfo.values = []
+                        self.screenInfo.homeStatus = ""
+                        self.isSubmitting = false
                     }
                 } else {
                     formSubmitDB.insert(formId: screenInfo.formId, keys: self.encodedString(arr: screenInfo.keys), values: encodedString(arr: screenInfo.values))
+                    self.screenInfo.screenInfo = "home"
+                    self.screenInfo.keys = []
+                    self.screenInfo.values = []
+                    self.screenInfo.homeStatus = "submit"
                 }
-                self.screenInfo.screenInfo = "home"
-                self.screenInfo.keys = []
-                self.screenInfo.values = []
+                
             }) {
                 HStack(alignment: .center) {
                     Spacer()

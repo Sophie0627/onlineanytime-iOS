@@ -20,6 +20,7 @@ struct SettingsView: View {
                 HStack(content: {
                     Button(action: {
                         self.screenInfo.screenInfo = "home"
+                        self.screenInfo.homeStatus = ""
                     }) {
                         Image("back_icon").padding()
                     }

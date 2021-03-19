@@ -16,6 +16,7 @@ class ScreenInfo : ObservableObject {
     @Published var pageNumber: Int
     @Published var keys: [String]
     @Published var values: [String]
+    @Published var homeStatus: String
     
     init(screenInfo: String) {
         self.screenInfo = screenInfo
@@ -25,7 +26,7 @@ class ScreenInfo : ObservableObject {
         self.pageNumber = 1
         self.keys = []
         self.values = []
-        
+        self.homeStatus = "first"
     }
     
     func setValues(elementId: String, value: String) {
