@@ -19,34 +19,8 @@ class AuthUser : ObservableObject {
 
     }
     
-    // Make sure the API calls once they are finished modify the values on the Main Thread
-    func signIn(email: String, password: String) {
-        
-            let params:[String:String] = ["email": email, "password": password]
-            
-            let url = URL(string: "https://online-anytime.com.au/olat/newapi/login")!
-            
-            ApiService.callPost(url: url, token: "", params: params, finish: self.finishPost)
-    }
-            
-        
-    func finishPost (message:String, data:Data?)
-    {
-        do
-        {
-            if let jsonData = data
-            {
-                let parsedData = try JSONDecoder().decode(UserInfo.self, from: jsonData)
-                print(parsedData)
-                self.token = parsedData.token
-                self.signedIn = true
-                dataProcess.dataProcess(token: self.token)
-            }
-        }
-        catch
-        {
-            print("Parse Error: \(error)")
-        }
+    func setToken(token: String) {
+        self.token = token
     }
     
     func getToken() -> String {

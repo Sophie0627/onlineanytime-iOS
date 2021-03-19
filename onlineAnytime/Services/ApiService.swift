@@ -9,7 +9,6 @@ import Foundation
 
 class ApiService
 {
-    
     static func getPostString(params:[String:Any]) -> String
     {
         var data = [String]()
@@ -47,6 +46,33 @@ class ApiService
             print(result.message)
         }
         task.resume()
+    }
+    
+    // Make sure the API calls once they are finished modify the values on the Main Thread
+    static func signIn(email: String, password: String, finish: @escaping (_ signedIn: Bool?, _ token: String?) -> Void) {
+        
+            let params:[String:String] = ["email": email, "password": password]
+            
+            let url = URL(string: "https://online-anytime.com.au/olat/newapi/login")!
+  
+            self.callPost(url: url, token: "", params: params) { (message, data) in
+            do
+            {
+                if let jsonData = data
+                {
+                    let parsedData = try JSONDecoder().decode(UserInfo.self, from: jsonData)
+                    print(parsedData)
+                    finish(true, parsedData.token)
+                } else {
+                    finish(false, "")
+                }
+            }
+            catch
+            {
+                finish(false, "")
+                print("Parse Error: \(error)")
+            }
+        }
     }
     
     static func submit(token: String, formId: Int, keys: [String], values: [String]) {
