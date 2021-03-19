@@ -63,7 +63,9 @@ struct CustomButton: View {
                     print("------------ok-------------")
                     let formSubmitDB: FormSubmitDBHelper = FormSubmitDBHelper()
                     if self.status {
-                        ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values)
+                        ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values) { result in
+                            print("ok")
+                        }
                     } else {
                         formSubmitDB.insert(formId: screenInfo.formId, keys: self.encodedString(arr: screenInfo.keys), values: encodedString(arr: screenInfo.values))
                     }
@@ -99,7 +101,9 @@ struct SubmitButton: View {
             Button(action: {
                 let formSubmitDB: FormSubmitDBHelper = FormSubmitDBHelper()
                 if self.status {
-                    ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values)
+                    ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values) {result in
+                        print("ok")
+                    }
                 } else {
                     formSubmitDB.insert(formId: screenInfo.formId, keys: self.encodedString(arr: screenInfo.keys), values: encodedString(arr: screenInfo.values))
                 }

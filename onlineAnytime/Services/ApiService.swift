@@ -75,7 +75,7 @@ class ApiService
         }
     }
     
-    static func submit(token: String, formId: Int, keys: [String], values: [String]) {
+    static func submit(token: String, formId: Int, keys: [String], values: [String], finish: @escaping (_ result: Bool?) -> Void) {
         
         print("--------------------submit function---------------------")
         var params:[String: String] = ["formId": String(formId), "id": "0"]
@@ -86,29 +86,16 @@ class ApiService
         
         let url = URL(string: "https://online-anytime.com.au/olat/newapi/form/save")!
         
-        self.callPost(url: url, token: token, params: params, finish: self.submitFinish)
+        self.callPost(url: url, token: token, params: params) { (message, data) in
+            if message == "success" {
+                finish(true)
+            } else {
+                finish(false)
+            }
+        }
     }
     
-    static func submitFinish(message: String, data: Data?) {
-        print("success")
-//        do
-//        {
-//            if let jsonData = data
-//            {
-//                let parsedData = try JSONDecoder().decode(UserInfo.self, from: jsonData)
-//                print(parsedData)
-////                self.token = parsedData.token
-////                self.signedIn = true
-////                dataProcess.dataProcess(token: self.token)
-//            }
-//        }
-//        catch
-//        {
-//            print("Parse Error: \(error)")
-//        }
-    }
-    
-    func fetchFormElement(token: String, formId: Int) {
+    func fetchFormElement(token: String, formId: Int, finish: @escaping (_ result: Bool?) -> Void) {
         guard let url = URL(string: "https://online-anytime.com.au/olat/newapi/form_elements/\(formId)") else {
             print("Invalid URL")
             return
@@ -131,20 +118,23 @@ class ApiService
                             formElementDB.insert(formId: formId, elementId: formElement.element_id, elementTitle: formElement.element_title, elementGuideline: formElement.element_guidelines, elementType: formElement.element_type, elementPosition: formElement.element_position, elementPageNumber: formElement.element_page_number, elementDefaultValue: formElement.element_default_value, elementConstraint: formElement.element_constraint, elementAddressHideline2: formElement.element_address_hideline2, elementMediaType: formElement.element_media_type, elementMediaImageSrc: formElement.element_media_image_src ?? "", elementMediaPdfSrc: formElement.element_media_pdf_src ?? "")
                         }
                     }
+                    finish(true)
 
                     // everything is good, so we can exit
                     return
                 }
             }
+            finish(false)
 
             // if we're still here it means there was a problem
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
         }.resume()
     }
     
-    func fetchFormElementOption(token: String) {
+    func fetchFormElementOption(token: String, finish: @escaping (_ result: Bool?) -> Void) {
         guard let url = URL(string: "https://online-anytime.com.au/olat/newapi/form_elements_options") else {
             print("Invalid URL")
+            finish(false)
             return
         }
         var request = URLRequest(url: url)
@@ -166,19 +156,21 @@ class ApiService
                         }
                         
                     }
-                    // everything is good, so we can exit
+                    finish(true)
                     return
                 }
             }
 
             // if we're still here it means there was a problem
+            finish(false)
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
        }.resume()
     }
     
-    func fetchFormData(token: String) {
+    func fetchFormData(token: String, finish: @escaping (_ result: Bool?) -> Void) {
         guard let url = URL(string: "https://online-anytime.com.au/olat/newapi/forms") else {
             print("Invalid URL")
+            finish(false)
             return
         }
         var request = URLRequest(url: url)
@@ -200,11 +192,12 @@ class ApiService
                             formDB.insert(formId: form.form_id, formName: form.form_name, formDescription: form.form_description)
                         }
                     }
+                    finish(true)
                     // everything is good, so we can exit
                     return
                 }
             }
-
+            finish(false)
             // if we're still here it means there was a problem
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
         }.resume()

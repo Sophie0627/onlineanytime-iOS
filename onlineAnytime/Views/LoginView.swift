@@ -14,6 +14,7 @@ struct LoginView: View {
     @EnvironmentObject var authUser: AuthUser
     @State private var isLoggingin: Bool = false
     @State private var isLoginFailed: Bool = false
+    @State var toastText: String = "Logging in..."
     
     var body: some View {
         
@@ -53,7 +54,7 @@ struct LoginView: View {
                     .toast(isPresented: self.$isLoggingin) {
                       print("Toast dismissed")
                     } content: {
-                      ToastView("Loading...")
+                        ToastView(self.toastText)
                         .toastViewStyle(IndefiniteProgressToastViewStyle())
                     }
                     
@@ -74,12 +75,26 @@ struct LoginView: View {
     
     func submit() {
         self.isLoggingin = true
+        self.toastText = "Logging in..."
         ApiService.signIn(email: self.email, password: self.password) { (signedIn, token) in
-            self.isLoggingin = false
+            
             self.authUser.setToken(token: token!)
-            self.authUser.signedIn = signedIn!
-            if !self.authUser.signedIn {
+            
+            if !signedIn! {
+                self.isLoggingin = false
                 self.isLoginFailed = true
+            } else {
+                
+                self.toastText = "Updating data..."
+                DataProcess().dataUpdate(token: token!) { result in
+                    print("Updating data....")
+                    self.toastText = "Submitting data..."
+                    DataProcess().dataSubmit(token: token!) { result in
+                        print("Submitting data....")
+                        self.authUser.signedIn = signedIn!
+                        self.isLoggingin = false
+                    }
+                }
             }
         }
     }
