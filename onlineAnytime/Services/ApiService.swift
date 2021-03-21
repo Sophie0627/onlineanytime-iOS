@@ -26,7 +26,6 @@ class ApiService
         request.httpMethod = "POST"
 
         let postString = self.getPostString(params: params)
-        print("----------------postString\(postString)")
         request.httpBody = postString.data(using: String.Encoding.utf8, allowLossyConversion: true)
         request.setValue(token, forHTTPHeaderField: "token")
         

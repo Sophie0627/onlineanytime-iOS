@@ -7,11 +7,13 @@ PODS:
   - SDWebImageSwiftUI (2.0.2):
     - SDWebImage (~> 5.10)
   - SweeterSwift (1.1.4)
+  - SwiftSignatureView (3.2.0)
   - ToastUI (2.0.0)
 
 DEPENDENCIES:
   - RadioGroup
   - SDWebImageSwiftUI
+  - SwiftSignatureView
   - ToastUI
 
 SPEC REPOS:
@@ -20,6 +22,7 @@ SPEC REPOS:
     - SDWebImage
     - SDWebImageSwiftUI
     - SweeterSwift
+    - SwiftSignatureView
     - ToastUI
 
 SPEC CHECKSUMS:
@@ -27,8 +30,9 @@ SPEC CHECKSUMS:
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
   SweeterSwift: 8a90cf3156f5a1b6f39785c479369a16633b5ea9
+  SwiftSignatureView: cd8cca297cc2ca6a6c174da22fb908c33d03d3c0
   ToastUI: 391eb9a1cc15e7ef4b79ee112e4a0b969259154f
 
-PODFILE CHECKSUM: 41cc55d4ec78348e88e174cbae47bae5802f5bf0
+PODFILE CHECKSUM: 9acdc5742113b6a184900e29895171767a4ebac2
 
 COCOAPODS: 1.10.1

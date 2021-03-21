@@ -9,5 +9,6 @@ target 'onlineAnytime' do
   pod 'RadioGroup'
   pod 'SDWebImageSwiftUI'
   pod 'ToastUI'
+  pod 'SwiftSignatureView'
 
 end
