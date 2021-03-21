@@ -11,17 +11,39 @@ struct FormFileView: View {
     
     var fileTitle: String
     var id: Int
-    @State private var isShowPhotoLibrary = false
+    @State private var showImagePicker = false
+    @State private var showAction = false
     @State private var isClickButton = false
     @State private var image = UIImage()
+    @State private var selectType: String = ""
     @EnvironmentObject var screenInfo: ScreenInfo
+    
+    var sheet: ActionSheet {
+        ActionSheet(
+            title: Text("Select file"),
+            buttons: [
+                .default(Text("Photo"), action: {
+                    self.showAction = false
+                    self.showImagePicker = true
+                    self.selectType = "photo"
+                }),
+                .cancel(Text("Close").foregroundColor(.blue), action: {
+                    self.showAction = false
+                }),
+                .destructive(Text("Camera"), action: {
+                    self.showAction = false
+                    self.showImagePicker = true
+                    self.selectType = "camera"
+                })
+            ])
+    }
     
     var body: some View {
         VStack {
             Text(self.fileTitle.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)).fixedSize(horizontal: false, vertical: true)
             
             Button(action: {
-                self.isShowPhotoLibrary = true
+                self.showAction = true
                 self.isClickButton = true
             }) {
                 Text("SELECT FILE")
@@ -40,8 +62,15 @@ struct FormFileView: View {
                     })
             }
         }
-        .sheet(isPresented: $isShowPhotoLibrary) {
-            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+        .actionSheet(isPresented: $showAction) {
+            sheet
+        }
+        .sheet(isPresented: $showImagePicker) {
+            if self.selectType == "photo" {
+                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+            } else {
+                ImagePicker(sourceType: .camera, selectedImage: self.$image)
+            }
         }
     }
 }
