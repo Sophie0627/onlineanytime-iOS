@@ -30,7 +30,7 @@ struct FormFileView: View {
                 .cancel(Text("Close").foregroundColor(.blue), action: {
                     self.showAction = false
                 }),
-                .destructive(Text("Camera"), action: {
+                .default(Text("Camera"), action: {
                     self.showAction = false
                     self.showImagePicker = true
                     self.selectType = "camera"

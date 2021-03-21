@@ -75,7 +75,6 @@ struct CustomButton: View {
                     if self.status {
                         self.isSubmitting = true
                         ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values) { result in
-                            print("ok")
                             self.isSubmitting = false
                             self.screenInfo.screenInfo = "home"
                             self.screenInfo.keys = []
@@ -122,12 +121,11 @@ struct SubmitButton: View {
                 if self.status {
                     self.isSubmitting = true
                     ApiService.submit(token: self.authUser.getToken(), formId: screenInfo.formId, keys: screenInfo.keys, values: screenInfo.values) {result in
-                        print("ok")
+                        self.isSubmitting = false
                         self.screenInfo.screenInfo = "home"
                         self.screenInfo.keys = []
                         self.screenInfo.values = []
                         self.screenInfo.homeStatus = ""
-                        self.isSubmitting = false
                     }
                 } else {
                     formSubmitDB.insert(formId: screenInfo.formId, keys: self.encodedString(arr: screenInfo.keys), values: encodedString(arr: screenInfo.values))
