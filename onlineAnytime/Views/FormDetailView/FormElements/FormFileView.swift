@@ -56,7 +56,7 @@ struct FormFileView: View {
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .edgesIgnoringSafeArea(.all)
                     .onChange(of: image, perform: {image in
-                        let imageData = image.pngData()
+                        let imageData = image.jpegData(compressionQuality: 0.03)
                         let imageBase64String: String = imageData?.base64EncodedString() ?? ""
                         self.screenInfo.setValues(elementId: "file[element_\(self.id)]", value: "\(imageBase64String.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!.replacingOccurrences(of: "+", with: "%2B"))")
                     })

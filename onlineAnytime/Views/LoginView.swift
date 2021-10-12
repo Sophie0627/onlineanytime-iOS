@@ -64,7 +64,7 @@ struct LoginView: View {
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 15, trailing: 20))
                     
                     
-                    Text("www.civilsafety.edu.au")
+                    
                 }
                 .alert(isPresented: $isLoginFailed) {
                     Alert(title: Text("ERROR!"), message: Text("Email or password is wrong! \nPlease enter correctly..."), dismissButton: .default(Text("Got it!")))
