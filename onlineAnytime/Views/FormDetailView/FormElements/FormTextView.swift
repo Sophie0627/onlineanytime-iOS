@@ -19,6 +19,14 @@ struct FormTextView: View {
         VStack(alignment: .leading) {
             Text(self.textTitle.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)).fixedSize(horizontal: false, vertical: true)
             TextField("Please write", text: $text)
+                .onAppear{
+                    
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)")
+                    if str != "###"
+                    {
+                        self.text = str
+                    }
+                }
                 .autocapitalization(.none)
                 .onChange(of: text) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)", value: self.text)
@@ -32,11 +40,11 @@ struct FormTextView: View {
     }
 }
 
-struct FormTextView_Previews: PreviewProvider {
-    
-    static var textTitle: String = ""
-    
-    static var previews: some View {
-        FormTextView(textTitle: self.textTitle, id: -1)
-    }
-}
+//struct FormTextView_Previews: PreviewProvider {
+//
+//    static var textTitle: String = ""
+//
+//    static var previews: some View {
+//        FormTextView(self.textTitle, -1, "")
+//    }
+//}

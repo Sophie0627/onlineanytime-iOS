@@ -80,8 +80,12 @@ class ApiService
         var params:[String: String] = ["formId": String(formId), "id": "0"]
         
         for (index, element) in keys.enumerated() {
-            params[element] = values[index]
+            if String(Array(element)[0..<3]) != "tmp" {
+                params[element] = values[index]
+            }
         }
+        
+        print("params \(params)")
         
         let url = URL(string: "https://online-anytime.com.au/olat/newapi/form/save")!
         

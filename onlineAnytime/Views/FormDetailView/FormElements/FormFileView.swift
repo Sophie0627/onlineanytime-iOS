@@ -59,9 +59,23 @@ struct FormFileView: View {
                         let imageData = image.jpegData(compressionQuality: 0.03)
                         let imageBase64String: String = imageData?.base64EncodedString() ?? ""
                         self.screenInfo.setValues(elementId: "file[element_\(self.id)]", value: "\(imageBase64String.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!.replacingOccurrences(of: "+", with: "%2B"))")
+                        self.screenInfo.setValues(elementId: "tmp_file[element_\(self.id)]", value: imageBase64String)
                     })
             }
         }
+        .onAppear(perform: {
+            var str: String = screenInfo.getValue(elementId: "file[element_\(self.id)]")
+            if str != "###"
+            {
+                
+                self.isClickButton = true
+                str = screenInfo.getValue(elementId: "tmp_file[element_\(self.id)]")
+                if let decodedData = NSData(base64Encoded: str, options: .ignoreUnknownCharacters) {
+                    self.image = UIImage(data: decodedData as Data) ?? UIImage()
+                }
+            }
+            
+        })
         .actionSheet(isPresented: $showAction) {
             sheet
         }

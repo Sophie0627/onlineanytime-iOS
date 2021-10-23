@@ -29,10 +29,20 @@ struct FormSelectView: View {
                 }
             }.fixedSize()
             .onChange(of: selectedFrameworkIndex, perform: {tag in
-                screenInfo.setValues(elementId: "element_\(self.selectId)", value: String(tag + 1))
+                print("------------------ select selectedIndex \(tag)")
+                screenInfo.setValues(elementId: "element_\(self.selectId)", value: String(tag))
             })
             .onAppear(perform: {
-                screenInfo.setValues(elementId: "element_\(self.selectId)", value: "1")
+                let str: String = screenInfo.getValue(elementId: "element_\(self.selectId)")
+                if str != "###"
+                {
+                    
+                    self.selectedFrameworkIndex = Int(str)!
+                    
+                    print("select \(str) selection \(selectedFrameworkIndex)")
+                } else {
+                    screenInfo.setValues(elementId: "element_\(self.selectId)", value: String(self.selectedFrameworkIndex))
+                }
             })
         }.padding()
     }

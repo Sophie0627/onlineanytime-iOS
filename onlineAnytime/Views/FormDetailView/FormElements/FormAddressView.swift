@@ -28,6 +28,13 @@ struct FormAddressView: View {
                 .onChange(of: street) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)_1", value: self.street)
                 }
+                .onAppear(perform: {
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)_1")
+                    if str != "###"
+                    {
+                        self.street = str
+                    }
+                })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .background(Color("white"))
@@ -39,6 +46,13 @@ struct FormAddressView: View {
                 .onChange(of: addressLine2) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)_2", value: self.addressLine2)
                 }
+                .onAppear(perform: {
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)_2")
+                    if str != "###"
+                    {
+                        self.addressLine2 = str
+                    }
+                })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .background(Color("white"))
@@ -50,6 +64,13 @@ struct FormAddressView: View {
                 .onChange(of: city) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)_3", value: self.city)
                 }
+                .onAppear(perform: {
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)_3")
+                    if str != "###"
+                    {
+                        self.city = str
+                    }
+                })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .background(Color("white"))
@@ -61,6 +82,13 @@ struct FormAddressView: View {
                 .onChange(of: state) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)_4", value: self.state)
                 }
+                .onAppear(perform: {
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)_4")
+                    if str != "###"
+                    {
+                        self.state = str
+                    }
+                })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .background(Color("white"))
@@ -72,6 +100,13 @@ struct FormAddressView: View {
                 .onChange(of: zipCode) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)_5", value: self.zipCode)
                 }
+                .onAppear(perform: {
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)_5")
+                    if str != "###"
+                    {
+                        self.zipCode = str
+                    }
+                })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .background(Color("white"))
@@ -83,6 +118,13 @@ struct FormAddressView: View {
                 .onChange(of: country) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)_6", value: self.country)
                 }
+                .onAppear(perform: {
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)_6")
+                    if str != "###"
+                    {
+                        self.country = str
+                    }
+                })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .background(Color("white"))

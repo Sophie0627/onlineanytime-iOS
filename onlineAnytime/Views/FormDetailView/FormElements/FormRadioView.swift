@@ -24,19 +24,23 @@ struct FormRadioView: View {
             HStack {
                 RadioGroupPicker(selectedIndex: $selection, titles: formOptionDB.getOptions(formId: self.screenInfo.formId, elementId: self.radioId))
                     .fixedSize()
-                    .onTapGesture(perform: {
-                        let length: Int = formOptionDB.getOptions(formId: self.screenInfo.formId, elementId: self.radioId).count
-                        var radioParam: Int
-                        if self.selection == length - 1 {
-                            radioParam = 1
-                        } else {
-                            radioParam = self.selection + 2
-                        }
-                        print("------------------selectedIndex \(selection) | radioParam \(radioParam)")
-                        screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(radioParam))
+                    .onChange(of: selection, perform: { selection in
+                                               
+                        print("------------------ radio selectedIndex \(selection)")
+                        screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(selection))
                     })
                     .onAppear(perform: {
-                        screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(self.selection + 1))
+                        let str: String = screenInfo.getValue(elementId: "element_\(self.radioId)")
+                        if str != "###"
+                        {
+                            
+                            self.selection = Int(str)!
+                            
+                            print("radio \(str) selection \(selection)")
+                        } else {
+                            screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(self.selection))
+                        }
+                        
                     })
                 Spacer()
             }

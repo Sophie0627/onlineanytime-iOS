@@ -13,6 +13,7 @@ struct FormElementListView: View {
     
     var body: some View {
         let formElementDB: FormElementDBHelper = FormElementDBHelper()
+        
         VStack {
             ForEach(formElementDB.readFormElementByPageNumber(formId: self.screenInfo.formId, elementPageNumber: self.screenInfo.pageNumber), id: \.formElement.element_id) { formElement in
                 FormElementView(formElement: formElement, pageNumber: self.screenInfo.pageNumber)

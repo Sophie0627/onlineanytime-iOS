@@ -25,7 +25,15 @@ struct FormTimeView: View {
                 .onAppear(perform: {
                     let formatter = DateFormatter()
                     formatter.dateFormat = "H:mm"
-                    screenInfo.setValues(elementId: "element_\(self.id)", value: formatter.string(from: self.selectedTime))
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)")
+                    if str != "###"
+                    {
+                        self.selectedTime = formatter.date(from: str) ?? Date()
+                    } else {
+                        
+                        
+                        screenInfo.setValues(elementId: "element_\(self.id)", value: formatter.string(from: self.selectedTime))
+                    }
                 })
         }
     }

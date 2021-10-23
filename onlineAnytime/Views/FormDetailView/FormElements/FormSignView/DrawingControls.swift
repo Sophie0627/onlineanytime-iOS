@@ -31,6 +31,7 @@ struct DrawingControls: View {
                     let imageData = self.uiimage!.pngData()
                     let imageBase64String: String = imageData?.base64EncodedString() ?? ""
                     self.screenInfo.setValues(elementId: "element_\(self.id)", value: "data:image/png;base64,\(imageBase64String.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!.replacingOccurrences(of: "+", with: "%2B"))")
+                    self.screenInfo.setValues(elementId: "tmp_element_\(self.id)", value: "data:image/png;base64,\(imageBase64String.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!.replacingOccurrences(of: "+", with: "%2B"))")
                 }
                 Button("Undo") {
                     if self.drawings.count > 0 {

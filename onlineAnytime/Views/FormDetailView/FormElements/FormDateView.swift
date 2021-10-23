@@ -24,8 +24,16 @@ struct FormDateView: View {
                 })
                 .onAppear(perform: {
                     let formatter = DateFormatter()
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)")
                     formatter.dateFormat = "yyyy-MM-dd"
-                    screenInfo.setValues(elementId: "element_\(self.id)", value: formatter.string(from: self.selectedDate))
+                    if str != "###"
+                    {
+                        self.selectedDate = formatter.date(from: str) ?? Date()
+                    } else {
+                        
+                        
+                        screenInfo.setValues(elementId: "element_\(self.id)", value: formatter.string(from: self.selectedDate))
+                    }
                 })
         }
     }

@@ -24,6 +24,13 @@ struct FormNameView: View {
                 .onChange(of: firstName) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)_1", value: self.firstName)
                 }
+                .onAppear(perform: {
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)_1")
+                    if str != "###"
+                    {
+                        self.firstName = str
+                    }
+                })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .background(Color("white"))
@@ -35,6 +42,13 @@ struct FormNameView: View {
                 .onChange(of: lastName) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)_2", value: self.lastName)
                 }
+                .onAppear(perform: {
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)_2")
+                    if str != "###"
+                    {
+                        self.lastName = str
+                    }
+                })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .background(Color("white"))

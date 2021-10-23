@@ -37,4 +37,11 @@ class ScreenInfo : ObservableObject {
             self.values.append(value)
         }
     }
+    
+    func getValue(elementId: String) -> String {
+        if let index = self.keys.firstIndex(of: elementId) {
+            return self.values[index];
+        }
+        return "###"
+    }
 }

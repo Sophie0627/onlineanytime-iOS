@@ -89,7 +89,7 @@ class FormOptionDBHelper
     }
     
     func getOptions(formId: Int, elementId: Int) -> [String] {
-        let queryStatementString = "SELECT option FROM formOption WHERE formId = \(formId) AND elementId = \(elementId);"
+        let queryStatementString = "SELECT option FROM formOption WHERE formId = \(formId) AND elementId = \(elementId) ORDER BY position ASC;"
         var queryStatement: OpaquePointer? = nil
         var options : [String] = []
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {

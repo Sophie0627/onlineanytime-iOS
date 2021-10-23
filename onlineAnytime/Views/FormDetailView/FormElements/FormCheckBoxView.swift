@@ -22,7 +22,11 @@ struct FormCheckBoxView: View {
         VStack(alignment: .leading) {
             Text(self.checkboxTitle).fixedSize(horizontal: false, vertical: true)
             ForEach(0 ..< options.count) {
-                CheckboxFieldView(text: options[$0], tag: $0, id: self.checkboxtId)
+//                if screenInfo.getValues(elementId: "element_\(self.checkboxtId)_\($0)") == "1" {
+//                    CheckboxFieldView(text: options[$0], tag: $0, id: self.checkboxtId, checkState: true)
+//                } else {
+                    CheckboxFieldView(text: options[$0], tag: $0, id: self.checkboxtId)
+//                }
             }
         }
     }
@@ -50,9 +54,9 @@ struct CheckboxFieldView : View {
                 self.checkState = !self.checkState
                 print("State : \(self.checkState)")
                 if checkState {
-                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag + 1)", value: "1")
+                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag)", value: "1")
                 } else {
-                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag + 1)", value: "0")
+                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag)", value: "0")
                 }
 
         }) {
@@ -63,6 +67,20 @@ struct CheckboxFieldView : View {
                         .fill(self.checkState ? Color.green : Color.red)
                         .frame(width:20, height:20, alignment: .center)
                         .cornerRadius(5)
+                        .onAppear(perform: {
+                            let str: String = screenInfo.getValue(elementId: "element_\(self.id)_\(self.tag)")
+                            if str != "###"
+                            {
+                                
+                                if str == "1" {
+                                    self.checkState = true
+                                } else {
+                                    self.checkState = false
+                                }
+                            } else {
+                                screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag)", value: "0")
+                            }
+                        })
 
                 Text(self.text).foregroundColor(.black)
                 Spacer()

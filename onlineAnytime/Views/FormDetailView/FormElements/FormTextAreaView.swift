@@ -23,6 +23,13 @@ struct FormTextAreaView: View {
                 .onChange(of: profileText) { newValue in
                     screenInfo.setValues(elementId: "element_\(self.id)", value: self.profileText)
                 }
+                .onAppear(perform: {
+                    let str: String = screenInfo.getValue(elementId: "element_\(self.id)")
+                    if str != "###"
+                    {
+                        self.profileText = str
+                    }
+                })
         }
     }
 }
