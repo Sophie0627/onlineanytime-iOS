@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class ApiService
 {
@@ -77,7 +78,21 @@ class ApiService
     static func submit(token: String, formId: Int, keys: [String], values: [String], finish: @escaping (_ result: Bool?) -> Void) {
         
         print("--------------------submit function---------------------")
-        var params:[String: String] = ["formId": String(formId), "id": "0"]
+        
+        let locationManager = CLLocationManager()
+        
+        locationManager.requestWhenInUseAuthorization()
+        var latitude = 0.0
+        var longitude = 0.0
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+        CLLocationManager.authorizationStatus() == .authorizedAlways) {
+            locationManager.startUpdatingLocation()
+            latitude = locationManager.location?.coordinate.latitude ?? 0.0
+            longitude = locationManager.location?.coordinate.longitude ?? 0.0
+            
+        }
+        print("--- latitude \(latitude) longitude \(longitude)")
+        var params:[String: String] = ["formId": String(formId), "id": "0", "latitude": "\(latitude)", "longitude": "\(longitude)"]
         
         for (index, element) in keys.enumerated() {
             if String(Array(element)[0..<3]) != "tmp" {
@@ -85,7 +100,7 @@ class ApiService
             }
         }
         
-        print("params \(params)")
+        
         
         let url = URL(string: "https://online-anytime.com.au/olat/newapi/form/save")!
         

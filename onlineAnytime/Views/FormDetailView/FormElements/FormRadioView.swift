@@ -27,7 +27,7 @@ struct FormRadioView: View {
                     .onChange(of: selection, perform: { selection in
                                                
                         print("------------------ radio selectedIndex \(selection)")
-                        screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(selection))
+                        screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(selection + 1))
                     })
                     .onAppear(perform: {
                         let str: String = screenInfo.getValue(elementId: "element_\(self.radioId)")
@@ -38,7 +38,7 @@ struct FormRadioView: View {
                             
                             print("radio \(str) selection \(selection)")
                         } else {
-                            screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(self.selection))
+                            screenInfo.setValues(elementId: "element_\(self.radioId)", value: String(self.selection + 1))
                         }
                         
                     })

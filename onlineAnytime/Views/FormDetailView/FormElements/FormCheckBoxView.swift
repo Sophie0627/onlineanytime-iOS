@@ -54,9 +54,9 @@ struct CheckboxFieldView : View {
                 self.checkState = !self.checkState
                 print("State : \(self.checkState)")
                 if checkState {
-                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag)", value: "1")
+                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag + 1)", value: "1")
                 } else {
-                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag)", value: "0")
+                    screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag +  1)", value: "0")
                 }
 
         }) {
@@ -68,7 +68,7 @@ struct CheckboxFieldView : View {
                         .frame(width:20, height:20, alignment: .center)
                         .cornerRadius(5)
                         .onAppear(perform: {
-                            let str: String = screenInfo.getValue(elementId: "element_\(self.id)_\(self.tag)")
+                            let str: String = screenInfo.getValue(elementId: "element_\(self.id)_\(self.tag + 1)")
                             if str != "###"
                             {
                                 
@@ -78,7 +78,7 @@ struct CheckboxFieldView : View {
                                     self.checkState = false
                                 }
                             } else {
-                                screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag)", value: "0")
+                                screenInfo.setValues(elementId: "element_\(self.id)_\(self.tag + 1)", value: "0")
                             }
                         })
 

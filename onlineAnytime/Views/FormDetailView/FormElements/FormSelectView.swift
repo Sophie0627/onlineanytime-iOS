@@ -30,7 +30,7 @@ struct FormSelectView: View {
             }.fixedSize()
             .onChange(of: selectedFrameworkIndex, perform: {tag in
                 print("------------------ select selectedIndex \(tag)")
-                screenInfo.setValues(elementId: "element_\(self.selectId)", value: String(tag))
+                screenInfo.setValues(elementId: "element_\(self.selectId)", value: String(tag + 1))
             })
             .onAppear(perform: {
                 let str: String = screenInfo.getValue(elementId: "element_\(self.selectId)")
@@ -41,7 +41,7 @@ struct FormSelectView: View {
                     
                     print("select \(str) selection \(selectedFrameworkIndex)")
                 } else {
-                    screenInfo.setValues(elementId: "element_\(self.selectId)", value: String(self.selectedFrameworkIndex))
+                    screenInfo.setValues(elementId: "element_\(self.selectId)", value: String(self.selectedFrameworkIndex + 1))
                 }
             })
         }.padding()
