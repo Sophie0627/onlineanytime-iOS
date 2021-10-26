@@ -104,6 +104,24 @@ class FormOptionDBHelper
         sqlite3_finalize(queryStatement)
         return options
     }
+    
+    func getOptionIds(formId: Int, elementId: Int) -> [String] {
+        let queryStatementString = "SELECT optionId FROM formOption WHERE formId = \(formId) AND elementId = \(elementId) ORDER BY position ASC;"
+        var queryStatement: OpaquePointer? = nil
+        var options : [String] = []
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                let option = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
+                options.append(option)
+//                print("Query Result: \(option)")
+            }
+        } else {
+            print("SELECT statement could not be prepared")
+        }
+        sqlite3_finalize(queryStatement)
+        return options
+    }
+    
 
     func read() -> [FormElementOption] {
         let queryStatementString = "SELECT * FROM formOption;"

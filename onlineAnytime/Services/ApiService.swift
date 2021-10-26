@@ -191,6 +191,22 @@ class ApiService
     }
     
     func fetchFormData(token: String, finish: @escaping (_ result: Bool?) -> Void) {
+        
+        let getLocation = GetLocation()
+        
+        getLocation.run {
+            var latitude = 0.0
+            var longitude = 0.0
+            if let location = $0 {
+                print("location = \(location.coordinate.latitude) \(location.coordinate.longitude)")
+                latitude = location.coordinate.latitude
+                longitude = location.coordinate.longitude
+            } else {
+                print("Get Location failed \(getLocation.didFailWithError)")
+            }
+        }
+            
+        
         guard let url = URL(string: "https://online-anytime.com.au/olat/newapi/forms") else {
             print("Invalid URL")
             finish(false)

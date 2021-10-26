@@ -19,6 +19,7 @@ struct FormCheckBoxView: View {
     var body: some View {
         let formOptionDB: FormOptionDBHelper = FormOptionDBHelper()
         let options = formOptionDB.getOptions(formId: self.screenInfo.formId, elementId: self.checkboxtId)
+        
         VStack(alignment: .leading) {
             Text(self.checkboxTitle).fixedSize(horizontal: false, vertical: true)
             ForEach(0 ..< options.count) {
