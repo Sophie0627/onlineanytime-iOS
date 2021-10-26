@@ -16,6 +16,8 @@ struct FormElementView: View {
             switch self.formElement.formElement.element_type {
             case "text":
                 FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
+            case "matrix":
+                FormMatrixView(matrixTitle: self.formElement.formElement.element_title, matrixId: self.formElement.formElement.element_id, matrixGuideline: self.formElement.formElement.element_guidelines, matrixConstraint: self.formElement.formElement.element_constraint)
             case "number":
                 FormTextView(textTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "email":

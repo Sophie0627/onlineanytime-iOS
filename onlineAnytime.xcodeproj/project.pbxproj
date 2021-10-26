@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		69D9A54591C1F8403A8488CA /* Pods_onlineAnytime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C742881C09D9F4B7A6230B /* Pods_onlineAnytime.framework */; };
+		AAB00CE627278EF600B4BDEE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB00CE527278EF600B4BDEE /* LocationManager.swift */; };
+		AAD55C972726A2FF00A7727D /* FormMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD55C962726A2FD00A7727D /* FormMatrixView.swift */; };
 		E409411025F828D5002425E4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E409410F25F828D5002425E4 /* LoginView.swift */; };
 		E409411325F82964002425E4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E409411225F82964002425E4 /* HomeView.swift */; };
 		E415660525FA975A0008B8F1 /* FormDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E415660425FA975A0008B8F1 /* FormDetailView.swift */; };
@@ -55,6 +57,8 @@
 /* Begin PBXFileReference section */
 		93C742881C09D9F4B7A6230B /* Pods_onlineAnytime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_onlineAnytime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9406DBEBBADC8992F38C84CC /* Pods-onlineAnytime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-onlineAnytime.debug.xcconfig"; path = "Target Support Files/Pods-onlineAnytime/Pods-onlineAnytime.debug.xcconfig"; sourceTree = "<group>"; };
+		AAB00CE527278EF600B4BDEE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		AAD55C962726A2FD00A7727D /* FormMatrixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormMatrixView.swift; sourceTree = "<group>"; };
 		B1351CA9231D73E7E9CA5608 /* Pods-onlineAnytime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-onlineAnytime.release.xcconfig"; path = "Target Support Files/Pods-onlineAnytime/Pods-onlineAnytime.release.xcconfig"; sourceTree = "<group>"; };
 		E409410F25F828D5002425E4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E409411225F82964002425E4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				E4ED3EC226033FA80045FD37 /* FormNameView.swift */,
 				E4ED3EC5260341D30045FD37 /* FormAddressView.swift */,
 				E4ED3EC8260344850045FD37 /* FormSectionView.swift */,
+				AAD55C962726A2FD00A7727D /* FormMatrixView.swift */,
 			);
 			path = FormElements;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				E4D36B372600AE4000581880 /* FormOptionDBHelper.swift */,
 				E4D36B3A2600C1DE00581880 /* FormElementDBHelper.swift */,
 				E46488102602B05B00A05723 /* FormSubmitDBHelper.swift */,
+				AAB00CE527278EF600B4BDEE /* LocationManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -423,6 +429,8 @@
 				E4EC86EC25F752A200997C0B /* ContentView.swift in Sources */,
 				E4C1CB2B260002CA00C6265C /* Reach.swift in Sources */,
 				E4EC86EA25F752A200997C0B /* onlineAnytimeApp.swift in Sources */,
+				AAD55C972726A2FF00A7727D /* FormMatrixView.swift in Sources */,
+				AAB00CE627278EF600B4BDEE /* LocationManager.swift in Sources */,
 				E4DAF38C25FA2C02006B98DB /* Form.swift in Sources */,
 				E4D36B3B2600C1DE00581880 /* FormElementDBHelper.swift in Sources */,
 				E4ED3EC326033FA90045FD37 /* FormNameView.swift in Sources */,
