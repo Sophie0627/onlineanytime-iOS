@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import CoreLocation
 
 
 class ApiService
@@ -80,27 +80,41 @@ class ApiService
         
         print("--------------------submit function---------------------")
         
+        let getLocation = GetLocation()
         
-//        print("--- latitude \(latitude) longitude \(longitude)")
-        var params:[String: String] = ["formId": String(formId), "id": "0", "latitude": "0", "longitude": "0"]
-        
-        for (index, element) in keys.enumerated() {
-            if String(Array(element)[0..<3]) != "tmp" {
-                params[element] = values[index]
-            }
-        }
-        
-        
-        
-        let url = URL(string: "https://online-anytime.com.au/olat/newapi/form/save")!
-        
-        self.callPost(url: url, token: token, params: params) { (message, data) in
-            if message == "success" {
-                finish(true)
+        getLocation.run {
+            var latitude = 0.0
+            var longitude = 0.0
+            if let location = $0 {
+                print("location = \(location.coordinate.latitude) \(location.coordinate.longitude)")
+                latitude = location.coordinate.latitude
+                longitude = location.coordinate.longitude
             } else {
-                finish(false)
+                print("Get Location failed \(getLocation.didFailWithError)")
+            }
+            
+            var params:[String: String] = ["formId": String(formId), "id": "0", "latitude": "\(latitude)", "longitude": "\(longitude)"]
+            
+            for (index, element) in keys.enumerated() {
+                if String(Array(element)[0..<3]) != "tmp" {
+                    params[element] = values[index]
+                }
+            }
+            
+            
+            
+            let url = URL(string: "https://online-anytime.com.au/olat/newapi/form/save")!
+            
+            self.callPost(url: url, token: token, params: params) { (message, data) in
+                if message == "success" {
+                    finish(true)
+                } else {
+                    finish(false)
+                }
             }
         }
+//        print("--- latitude \(latitude) longitude \(longitude)")
+        
     }
     
     func fetchFormElement(token: String, formId: Int, finish: @escaping (_ result: Bool?) -> Void) {
@@ -212,4 +226,35 @@ class ApiService
     }
 }
 
+public class GetLocation: NSObject, CLLocationManagerDelegate {
+    let manager = CLLocationManager()
+    var locationCallback: ((CLLocation?) -> Void)!
+    var locationServicesEnabled = false
+    var didFailWithError: Error?
 
+    public func run(callback: @escaping (CLLocation?) -> Void) {
+        locationCallback = callback
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        manager.requestWhenInUseAuthorization()
+        locationServicesEnabled = CLLocationManager.locationServicesEnabled()
+        if locationServicesEnabled { manager.startUpdatingLocation() }
+        else { locationCallback(nil) }
+    }
+
+   public func locationManager(_ manager: CLLocationManager,
+                         didUpdateLocations locations: [CLLocation]) {
+        locationCallback(locations.last!)
+        manager.stopUpdatingLocation()
+    }
+
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        didFailWithError = error
+        locationCallback(nil)
+        manager.stopUpdatingLocation()
+    }
+
+    deinit {
+        manager.stopUpdatingLocation()
+    }
+}
