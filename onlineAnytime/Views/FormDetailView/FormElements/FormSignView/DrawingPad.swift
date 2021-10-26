@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct DrawingPad: View {
     @Binding var currentDrawing: Drawing
     @Binding var drawings: [Drawing]

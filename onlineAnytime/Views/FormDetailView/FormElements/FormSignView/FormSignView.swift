@@ -14,6 +14,9 @@ struct FormSignView: View {
     @State private var color: Color = Color.black
     @State private var lineWidth: CGFloat = 3.0
     @State private var rect: CGRect = .zero
+    @State private var isDrawing: Bool = false
+    @State private var image: UIImage = UIImage()
+    @EnvironmentObject var screenInfo: ScreenInfo
     
     var signTitle: String = ""
     var id: Int = -1
@@ -21,14 +24,34 @@ struct FormSignView: View {
     var body: some View {
         VStack(alignment: .center) {
             Text(self.signTitle).fixedSize(horizontal: false, vertical: true)
-            DrawingPad(currentDrawing: $currentDrawing,
-                       drawings: $drawings,
-                       color: $color,
-                       lineWidth: $lineWidth)
-                .frame(height: 150)
-                .background(RectGetter(rect: $rect))
-            DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth, rect: self.rect, id: self.id)
+            if !isDrawing {
+                DrawingPad(currentDrawing: $currentDrawing,
+                           drawings: $drawings,
+                           color: $color,
+                           lineWidth: $lineWidth)
+                    .frame(height: 150)
+                    .background(RectGetter(rect: $rect))
+            } else {
+                Image(uiImage: self.image)
+                .resizable()
+                .scaledToFill()
+                .frame(minWidth: 0, maxWidth: .infinity)
+            }
+            
+            DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth, isDrawing: $isDrawing, rect: self.rect, id: self.id)
         }.padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
+            .onAppear(perform: {
+                var str: String = screenInfo.getValue(elementId: "element_\(self.id)")
+                if str != "###"
+                {
+                    
+                    self.isDrawing = true
+                    str = screenInfo.getValue(elementId: "tmp_element_\(self.id)")
+                    if let decodedData = NSData(base64Encoded: str, options: .ignoreUnknownCharacters) {
+                        self.image = UIImage(data: decodedData as Data) ?? UIImage()
+                    }
+                }
+            })
     }
 }
 

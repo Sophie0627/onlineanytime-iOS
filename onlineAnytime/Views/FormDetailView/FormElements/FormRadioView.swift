@@ -34,7 +34,7 @@ struct FormRadioView: View {
                         if str != "###"
                         {
                             
-                            self.selection = Int(str)!
+                            self.selection = Int(str)! - 1
                             
                             print("radio \(str) selection \(selection)")
                         } else {

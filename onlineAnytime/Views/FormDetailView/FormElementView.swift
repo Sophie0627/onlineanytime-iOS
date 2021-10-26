@@ -39,7 +39,7 @@ struct FormElementView: View {
             case "page_break":
                 PageBreakView()
             case "section":
-                FormSectionView(sectionTitle: self.formElement.formElement.element_title)
+                FormSectionView(sectionTitle: self.formElement.formElement.element_title, sectionGuideline: self.formElement.formElement.element_guidelines)
             case "file":
                 FormFileView(fileTitle: self.formElement.formElement.element_title, id: self.formElement.formElement.element_id)
             case "textarea":

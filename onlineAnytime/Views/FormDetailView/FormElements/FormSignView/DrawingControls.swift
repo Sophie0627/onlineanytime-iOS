@@ -12,6 +12,7 @@ struct DrawingControls: View {
     @Binding var color: Color
     @Binding var drawings: [Drawing]
     @Binding var lineWidth: CGFloat
+    @Binding var isDrawing: Bool
     
     @State private var colorPickerShown = false
     @State private var uiimage: UIImage? = nil
@@ -31,7 +32,7 @@ struct DrawingControls: View {
                     let imageData = self.uiimage!.pngData()
                     let imageBase64String: String = imageData?.base64EncodedString() ?? ""
                     self.screenInfo.setValues(elementId: "element_\(self.id)", value: "data:image/png;base64,\(imageBase64String.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!.replacingOccurrences(of: "+", with: "%2B"))")
-                    self.screenInfo.setValues(elementId: "tmp_element_\(self.id)", value: "data:image/png;base64,\(imageBase64String.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!.replacingOccurrences(of: "+", with: "%2B"))")
+                    self.screenInfo.setValues(elementId: "tmp_element_\(self.id)", value: imageBase64String)
                 }
                 Button("Undo") {
                     if self.drawings.count > 0 {
@@ -40,6 +41,7 @@ struct DrawingControls: View {
                 }
                 Button("Clear") {
                     self.drawings = [Drawing]()
+                    self.isDrawing = false
                 }
             }
         }
